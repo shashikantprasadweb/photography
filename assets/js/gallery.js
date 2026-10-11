@@ -26,17 +26,25 @@
   const lightboxPrev = document.getElementById('lightbox-prev');
   const lightboxNext = document.getElementById('lightbox-next');
 
+  let initAttempts = 0;
   function init() {
-    if (!window.GALLERY_DATA || !Array.isArray(window.GALLERY_DATA)) {
-      console.warn('GALLERY_DATA not loaded.');
+    const data = window.GALLERY_DATA || (typeof GALLERY_DATA !== 'undefined' ? GALLERY_DATA : null);
+    if (!data || !Array.isArray(data)) {
+      if (initAttempts < 40) {
+        initAttempts++;
+        setTimeout(init, 50);
+        return;
+      }
+      console.warn('GALLERY_DATA not loaded after timeout.');
       return;
     }
 
-    filteredItems = [...window.GALLERY_DATA];
+    filteredItems = [...data];
     renderGrid(filteredItems);
     bindFilters();
     bindLightbox();
   }
+
 
   function renderGrid(items) {
     if (!gridContainer) return;

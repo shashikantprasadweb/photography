@@ -2,37 +2,42 @@
 <html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8">
+  <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shashikant Prasad — Visual Storyteller & Explorer</title>
-  <meta name="description" content="Visual Storytelling, Fine-Art Photography & Travel Chronicles by Shashikant Prasad.">
+  <title>Shashikant Prasad — Visual Storyteller &amp; Explorer</title>
+  <meta name="description" content="Flagship portal of Shashikant Prasad. Featuring curated fine-art landscape photography showcases and high-impact expedition masterplans.">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Inter', sans-serif; }
     .font-cinzel { font-family: 'Cinzel', serif; }
     .glass-nav {
-      background: rgba(10, 15, 29, 0.75);
+      background: rgba(7, 9, 14, 0.85);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     }
-    .gallery-card {
+    .spoke-card {
       transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .gallery-card:hover {
+    .spoke-card:hover {
       transform: translateY(-4px);
+      border-color: rgba(245, 158, 11, 0.4);
+    }
+    .travel-card:hover {
+      border-color: rgba(16, 185, 129, 0.5);
     }
   </style>
 </head>
 <body class="bg-[#07090e] text-slate-200 antialiased min-h-screen flex flex-col selection:bg-amber-500/20 selection:text-amber-300">
 
-  <!-- Navigation -->
+  <!-- Main Navigation -->
   <header class="fixed top-0 inset-x-0 z-50 glass-nav">
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-3 group">
+      <a href="/" class="flex items-center gap-3 group">
         <img src="favicon.svg" alt="SP Camera" class="w-9 h-9 rounded-lg shadow-sm border border-emerald-500/30 group-hover:scale-105 transition-transform">
         <div class="flex flex-col">
           <span class="font-cinzel tracking-widest text-lg font-bold text-white uppercase group-hover:text-emerald-300 transition-colors">Shashikant Prasad</span>
@@ -41,159 +46,349 @@
       </a>
 
       <nav class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
-        <a href="#photography" class="text-amber-400 hover:text-white transition-colors">Photography</a>
-        <a href="travel/" class="text-slate-400 hover:text-white transition-colors">Travel</a>
-        <a href="#expeditions" class="text-slate-400 hover:text-white transition-colors">Expeditions</a>
+        <a href="photography/" class="text-amber-400 hover:text-white transition-colors">Photography</a>
+        <a href="travel/" class="text-emerald-400 hover:text-white transition-colors">Travel Expeditions</a>
         <a href="#about" class="text-slate-400 hover:text-white transition-colors">About</a>
+        <a href="#contact" class="text-slate-400 hover:text-white transition-colors">Contact</a>
       </nav>
 
-      <a href="#contact" class="hidden sm:inline-flex items-center px-4 py-2 rounded-full border border-amber-500/40 text-xs font-semibold uppercase tracking-wider text-amber-300 hover:bg-amber-500/10 transition-all">
-        Inquire
-      </a>
+      <div class="flex items-center gap-3">
+        <a href="photography/" class="hidden sm:inline-flex items-center px-4 py-2 rounded-full border border-amber-500/40 text-xs font-semibold uppercase tracking-wider text-amber-300 hover:bg-amber-500/10 transition-all">
+          View Gallery &rarr;
+        </a>
+      </div>
     </div>
   </header>
 
   <!-- Hero Section -->
   <section class="relative pt-36 pb-20 px-6 max-w-7xl mx-auto text-center flex flex-col items-center">
     <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-amber-500/30 bg-amber-500/5 text-amber-400 text-xs font-medium tracking-widest uppercase mb-6">
-      Fine-Art Photography &bull; Expeditions &bull; Field Notes
+      Main Brand Portal &bull; Photography &bull; Expeditions &bull; Field Notes
     </div>
-    <h1 class="font-cinzel text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white max-w-4xl leading-tight mb-6">
-      Capturing Raw Landscapes &amp; Timeless Stories
+    <h1 class="font-cinzel text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white max-w-5xl leading-tight mb-6">
+      Capturing Raw Horizons &amp; Overland Chronicles
     </h1>
-    <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto font-light leading-relaxed mb-10">
-      A visual exploration of untouched horizons, atmospheric wilderness, and cultural journeys across the globe.
+    <p class="text-slate-400 text-base sm:text-lg max-w-3xl mx-auto font-light leading-relaxed mb-10">
+      The flagship portfolio of Shashikant Prasad. Discover a 45-piece fine-art landscape photography showcase alongside exhaustive, turn-by-turn expedition masterplans across untouched landscapes.
     </p>
 
-    <!-- Filter Bar -->
-    <div class="flex flex-wrap justify-center gap-2 mb-12">
-      <button data-category="all" class="filter-btn px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase bg-white text-slate-900 shadow-md transition-all">All Works</button>
-      <button data-category="alps" class="filter-btn px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-white transition-all">Alps &amp; Lakes</button>
-      <button data-category="coastal" class="filter-btn px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-white transition-all">Coastal &amp; Islands</button>
-      <button data-category="night" class="filter-btn px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-white transition-all">Night Architecture</button>
-      <button data-category="urban" class="filter-btn px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-white transition-all">Canal Chronicles</button>
-      <button data-category="wild" class="filter-btn px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-white transition-all">Wilderness &amp; Aerial</button>
+    <!-- Outbound Spoke Action Buttons -->
+    <div class="flex flex-wrap justify-center gap-4 mb-16">
+      <a href="photography/" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-amber-500 text-slate-950 font-bold text-sm tracking-wide shadow-lg hover:bg-amber-400 hover:shadow-amber-500/20 transition-all">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+        Photography Spoke Showcase
+      </a>
+      <a href="travel/" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-emerald-500/40 bg-emerald-500/10 text-emerald-300 font-bold text-sm tracking-wide hover:bg-emerald-500/20 transition-all">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"/></svg>
+        Travel &amp; Expeditions Portal
+      </a>
     </div>
   </section>
 
-  <!-- Photography Showcase Grid -->
-  <main id="photography" class="max-w-7xl mx-auto px-6 pb-24 w-full flex-grow">
-    <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Dynamically populated by gallery.js -->
-    </div>
-  </main>
-
-  <!-- Travel Section -->
-  <section id="travel" class="border-t border-slate-900 bg-slate-950/60 py-20 px-6">
-    <div class="max-w-7xl mx-auto">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12">
-        <div>
-          <span class="text-xs uppercase tracking-widest text-amber-400 font-semibold mb-2 block">Chronicles &amp; Expeditions</span>
-          <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-white">Travel</h2>
+  <!-- Spoke 1: Photography Preview Section -->
+  <section class="max-w-7xl mx-auto px-6 py-16 border-t border-slate-900 w-full">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-400 text-xs font-semibold tracking-widest uppercase mb-3">
+          Photography Spoke Preview
         </div>
-        <p class="text-slate-400 text-sm max-w-md mt-4 sm:mt-0">
-          In-depth itineraries, field notes, photography guides, and logistics from journeys off the beaten path.
+        <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-white">Featured Photographic Works</h2>
+        <p class="text-slate-400 text-sm max-w-xl mt-2 font-light">
+          A selection of 6 highlights from the complete 45-piece fine-art collection. Captured on Sony Alpha 7 III with authentic camera telemetry.
+        </p>
+      </div>
+      <a href="photography/" class="inline-flex items-center gap-2 text-amber-400 hover:text-amber-300 font-semibold text-sm tracking-wide group">
+        <span>Explore All 45 Works with Full-Screen Lightbox</span>
+        <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+      </a>
+    </div>
+
+    <!-- 6 Curated Showcase Preview Cards -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
+      
+      <!-- Card 1 -->
+      <article class="spoke-card group relative rounded-2xl overflow-hidden border border-slate-800/80 bg-slate-900/40 shadow-lg">
+        <div class="aspect-[4/5] relative overflow-hidden bg-slate-950">
+          <img src="assets/images/photography/havelock_island/2026_havelock_island_01_thumb.jpg" alt="Andaman Horizon #01" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+          <div class="absolute top-4 left-4">
+            <span class="px-3 py-1 rounded-full bg-slate-950/80 border border-slate-700/80 text-[10px] font-semibold tracking-wider uppercase text-amber-400 backdrop-blur-md">Coastal &amp; Islands</span>
+          </div>
+          <div class="absolute bottom-4 inset-x-4">
+            <span class="text-xs text-slate-400 block mb-1">Havelock Island, Andaman</span>
+            <h3 class="font-cinzel text-lg text-white font-bold">Andaman Horizon #01</h3>
+            <p class="text-[11px] font-mono text-slate-400 mt-1">17mm &bull; f/11 &bull; 1/50s &bull; ISO 100</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="spoke-card group relative rounded-2xl overflow-hidden border border-slate-800/80 bg-slate-900/40 shadow-lg">
+        <div class="aspect-[4/5] relative overflow-hidden bg-slate-950">
+          <img src="assets/images/photography/munich_salzburg_hallstatt/2024_munich_salzburg_hallstatt_01_thumb.jpg" alt="Munich Alpine Mist" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+          <div class="absolute top-4 left-4">
+            <span class="px-3 py-1 rounded-full bg-slate-950/80 border border-slate-700/80 text-[10px] font-semibold tracking-wider uppercase text-amber-400 backdrop-blur-md">Alpine Horizons</span>
+          </div>
+          <div class="absolute bottom-4 inset-x-4">
+            <span class="text-xs text-slate-400 block mb-1">Bavaria &amp; Austrian Alps</span>
+            <h3 class="font-cinzel text-lg text-white font-bold">Munich Alpine Mist #01</h3>
+            <p class="text-[11px] font-mono text-slate-400 mt-1">24mm &bull; f/8 &bull; 1/160s &bull; ISO 100</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="spoke-card group relative rounded-2xl overflow-hidden border border-slate-800/80 bg-slate-900/40 shadow-lg">
+        <div class="aspect-[4/5] relative overflow-hidden bg-slate-950">
+          <img src="assets/images/photography/wansee_berlin/2022_wansee_berlin_01_thumb.jpg" alt="Wannsee Lake Horizon" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+          <div class="absolute top-4 left-4">
+            <span class="px-3 py-1 rounded-full bg-slate-950/80 border border-slate-700/80 text-[10px] font-semibold tracking-wider uppercase text-amber-400 backdrop-blur-md">Raw Wilderness</span>
+          </div>
+          <div class="absolute bottom-4 inset-x-4">
+            <span class="text-xs text-slate-400 block mb-1">Wannsee, Berlin, Germany</span>
+            <h3 class="font-cinzel text-lg text-white font-bold">Wannsee Lake Calm #01</h3>
+            <p class="text-[11px] font-mono text-slate-400 mt-1">28mm &bull; f/7.1 &bull; 1/200s &bull; ISO 100</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 4 -->
+      <article class="spoke-card group relative rounded-2xl overflow-hidden border border-slate-800/80 bg-slate-900/40 shadow-lg">
+        <div class="aspect-[4/5] relative overflow-hidden bg-slate-950">
+          <img src="assets/images/photography/amsterdam_night/2022_amsterdam_night_01_thumb.jpg" alt="Amsterdam Nocturne" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+          <div class="absolute top-4 left-4">
+            <span class="px-3 py-1 rounded-full bg-slate-950/80 border border-slate-700/80 text-[10px] font-semibold tracking-wider uppercase text-amber-400 backdrop-blur-md">Night Horizons</span>
+          </div>
+          <div class="absolute bottom-4 inset-x-4">
+            <span class="text-xs text-slate-400 block mb-1">Amsterdam, Netherlands</span>
+            <h3 class="font-cinzel text-lg text-white font-bold">Amsterdam Nocturne #01</h3>
+            <p class="text-[11px] font-mono text-slate-400 mt-1">17mm &bull; f/8 &bull; 30.0s &bull; ISO 100</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 5 -->
+      <article class="spoke-card group relative rounded-2xl overflow-hidden border border-slate-800/80 bg-slate-900/40 shadow-lg">
+        <div class="aspect-[4/5] relative overflow-hidden bg-slate-950">
+          <img src="assets/images/photography/jonha_falls/2023_jonha_falls_01_thumb.jpg" alt="Jonha Cascade" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+          <div class="absolute top-4 left-4">
+            <span class="px-3 py-1 rounded-full bg-slate-950/80 border border-slate-700/80 text-[10px] font-semibold tracking-wider uppercase text-amber-400 backdrop-blur-md">Raw Wilderness</span>
+          </div>
+          <div class="absolute bottom-4 inset-x-4">
+            <span class="text-xs text-slate-400 block mb-1">Jonha Falls, Ranchi, India</span>
+            <h3 class="font-cinzel text-lg text-white font-bold">Jonha Cascade #01</h3>
+            <p class="text-[11px] font-mono text-slate-400 mt-1">24mm &bull; f/9 &bull; 1/125s &bull; ISO 100</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 6 -->
+      <article class="spoke-card group relative rounded-2xl overflow-hidden border border-slate-800/80 bg-slate-900/40 shadow-lg">
+        <div class="aspect-[4/5] relative overflow-hidden bg-slate-950">
+          <img src="assets/images/photography/havelock_island/2026_havelock_island_04_thumb.jpg" alt="Tropical Driftwood" loading="lazy" class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105">
+          <div class="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+          <div class="absolute top-4 left-4">
+            <span class="px-3 py-1 rounded-full bg-slate-950/80 border border-slate-700/80 text-[10px] font-semibold tracking-wider uppercase text-amber-400 backdrop-blur-md">Coastal &amp; Islands</span>
+          </div>
+          <div class="absolute bottom-4 inset-x-4">
+            <span class="text-xs text-slate-400 block mb-1">Radhanagar Beach, Andaman</span>
+            <h3 class="font-cinzel text-lg text-white font-bold">Radhanagar Driftwood #04</h3>
+            <p class="text-[11px] font-mono text-slate-400 mt-1">20mm &bull; f/10 &bull; 1/60s &bull; ISO 100</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Centered Call to Action -->
+    <div class="text-center pt-2">
+      <a href="photography/" class="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-amber-500/50 bg-amber-500/10 text-amber-300 font-bold text-sm tracking-wide hover:bg-amber-500 hover:text-slate-950 shadow-lg transition-all">
+        <span>Enter Pure Photography Spoke (All 45 Masterworks)</span>
+        <span>&rarr;</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- Spoke 2: Travel & Expeditions Preview Section -->
+  <section class="max-w-7xl mx-auto px-6 py-16 border-t border-slate-900 w-full">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-400 text-xs font-semibold tracking-widest uppercase mb-3">
+          Travel &amp; Expeditions Spoke Preview
+        </div>
+        <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-white">Curated Overland Masterplans</h2>
+        <p class="text-slate-400 text-sm max-w-xl mt-2 font-light">
+          Field-tested travel chronicles engineered with turn-by-turn road logistics, vehicle choices, authentic budgets, and high-impact photography.
+        </p>
+      </div>
+      <a href="travel/" class="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 font-semibold text-sm tracking-wide group">
+        <span>Explore Travel Portal &amp; Directory</span>
+        <span class="group-hover:translate-x-1 transition-transform">&rarr;</span>
+      </a>
+    </div>
+
+    <!-- Featured Travel Expedition Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+      
+      <!-- Meghalaya Expedition -->
+      <article class="spoke-card travel-card group rounded-2xl overflow-hidden border border-slate-800 bg-slate-900/40 p-6 flex flex-col justify-between shadow-xl">
+        <div>
+          <div class="aspect-video relative rounded-xl overflow-hidden mb-5 bg-slate-950">
+            <img src="travel/images/dawki.jpg" alt="Dawki River Umngot" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute top-3 left-3 flex gap-2">
+              <span class="px-3 py-1 rounded-full bg-emerald-950/90 border border-emerald-500/40 text-[10px] font-bold text-emerald-300 uppercase tracking-wider backdrop-blur-md">8-Day Family Masterplan</span>
+              <span class="px-3 py-1 rounded-full bg-slate-950/80 border border-slate-700 text-[10px] font-bold text-slate-300 uppercase tracking-wider backdrop-blur-md">17 Destinations</span>
+            </div>
+          </div>
+          <span class="text-xs text-emerald-400 font-semibold uppercase tracking-wider">India &bull; Northeast 2026</span>
+          <h3 class="font-cinzel text-2xl text-white font-bold mt-1 mb-3">Meghalaya: The Turquoise Water Circuit</h3>
+          <p class="text-slate-400 text-sm font-light leading-relaxed mb-4">
+            Crystalline Umngot riverbeds, sapphire plunge pools of Krang Suri, ancient living root bridges, and rolling pine ridges of Laitlum Canyons. Dedicated SUV logistics and family pacing.
+          </p>
+          <div class="flex flex-wrap gap-2 text-[11px] text-slate-400 font-medium mb-6">
+            <span class="px-2.5 py-1 rounded-md bg-slate-800/80 border border-slate-700/60">Umngot River</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-800/80 border border-slate-700/60">Krang Suri Falls</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-800/80 border border-slate-700/60">Living Root Bridge</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-800/80 border border-slate-700/60">Laitlum Canyons</span>
+          </div>
+        </div>
+        <a href="travel/meghalaya-blue-water-circuit.html" class="inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider shadow-md transition-colors">
+          <span>View Full Meghalaya Expedition Plan</span>
+          <span>&rarr;</span>
+        </a>
+      </article>
+
+      <!-- Andaman Archipelago Expedition -->
+      <article class="spoke-card travel-card group rounded-2xl overflow-hidden border border-slate-800 bg-slate-900/40 p-6 flex flex-col justify-between shadow-xl">
+        <div>
+          <div class="aspect-video relative rounded-xl overflow-hidden mb-5 bg-slate-950">
+            <img src="assets/images/photography/havelock_island/2026_havelock_island_01.jpg" alt="Andaman Islands" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute top-3 left-3 flex gap-2">
+              <span class="px-3 py-1 rounded-full bg-blue-950/90 border border-blue-500/40 text-[10px] font-bold text-blue-300 uppercase tracking-wider backdrop-blur-md">Tropical Marine Circuit</span>
+            </div>
+          </div>
+          <span class="text-xs text-blue-400 font-semibold uppercase tracking-wider">India &bull; Bay of Bengal</span>
+          <h3 class="font-cinzel text-2xl text-white font-bold mt-1 mb-3">Andaman: Solitary Horizons &amp; Atolls</h3>
+          <p class="text-slate-400 text-sm font-light leading-relaxed mb-4">
+            Remote island expeditions across Havelock, Neil, and Port Blair. Mangrove kayaking, solitary sunset horizons at Radhanagar, and coastal reef telemetry.
+          </p>
+          <div class="flex flex-wrap gap-2 text-[11px] text-slate-400 font-medium mb-6">
+            <span class="px-2.5 py-1 rounded-md bg-slate-800/80 border border-slate-700/60">Havelock Island</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-800/80 border border-slate-700/60">Radhanagar Beach</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-800/80 border border-slate-700/60">Elephant Beach</span>
+            <span class="px-2.5 py-1 rounded-md bg-slate-800/80 border border-slate-700/60">Reef Survey</span>
+          </div>
+        </div>
+        <a href="travel/" class="inline-flex items-center justify-center gap-2 w-full py-3 rounded-xl border border-slate-700 bg-slate-800/80 hover:bg-slate-700 text-slate-200 font-bold text-xs uppercase tracking-wider transition-colors">
+          <span>Explore in Travel Directory</span>
+          <span>&rarr;</span>
+        </a>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="max-w-7xl mx-auto px-6 py-20 border-t border-slate-900 w-full">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      <div class="lg:col-span-5">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-400 text-xs font-semibold tracking-widest uppercase mb-4">
+          Philosophy &amp; Ethos
+        </div>
+        <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-white leading-tight mb-6">
+          Solitary Light, Pure Landscapes &amp; Precision Logistics
+        </h2>
+        <p class="text-slate-400 text-base font-light leading-relaxed mb-6">
+          Shashikant Prasad is an explorer and visual storyteller dedicated to documenting untouched wilderness, atmospheric frontiers, and remote geographies. Every frame is captured with real natural light and authentic exposure telemetry.
+        </p>
+        <p class="text-slate-400 text-base font-light leading-relaxed">
+          The platform brings together fine-art visual archives and battle-tested overland masterplans, engineered for travelers and collectors who value authentic craftsmanship.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div class="p-8 rounded-2xl border border-slate-800/80 bg-slate-900/30 hover:border-slate-700 transition-all">
-          <span class="text-xs font-mono text-amber-400/80 block mb-2">OCTOBER 2026 &bull; EXPEDITION NOTE</span>
-          <h3 class="font-cinzel text-2xl font-bold text-white mb-3">Autumn in Southern Bavaria: Chasing Golden Hours</h3>
-          <p class="text-slate-400 text-sm leading-relaxed mb-6">
-            A photographer's guide through misty lakes, historical alpine routes, and golden beech canopies across Berchtesgaden and Königssee.
+      <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <div class="p-6 rounded-2xl border border-slate-800 bg-slate-900/30">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 mb-4 font-bold">
+            📷
+          </div>
+          <h3 class="font-cinzel text-lg text-white font-bold mb-2">Camera Telemetry</h3>
+          <p class="text-xs text-slate-400 font-light leading-relaxed">
+            Sony Alpha 7 III full-frame system paired with prime ultra-wides (17mm–24mm) and telephoto glass. No generative AI or synthetic sky replacements.
           </p>
-          <a href="travel/" class="text-xs font-semibold uppercase tracking-wider text-amber-400 hover:text-amber-300 inline-flex items-center gap-1">Explore Travel Portal &rarr;</a>
         </div>
 
-        <div class="p-8 rounded-2xl border border-slate-800/80 bg-slate-900/30 hover:border-slate-700 transition-all">
-          <span class="text-xs font-mono text-emerald-400/80 block mb-2">FIELD PLANNING &bull; NORTHEAST EXPEDITION</span>
-          <h3 class="font-cinzel text-2xl font-bold text-white mb-3">Meghalaya: Turquoise Water Circuit Masterplan</h3>
-          <p class="text-slate-400 text-sm leading-relaxed mb-6">
-            An 8-day expedition masterplan through Krang Shuri, Dawki, Umngot river, and living root bridges with timing and logistics.
+        <div class="p-6 rounded-2xl border border-slate-800 bg-slate-900/30">
+          <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 mb-4 font-bold">
+            🧭
+          </div>
+          <h3 class="font-cinzel text-lg text-white font-bold mb-2">Expedition Rigor</h3>
+          <p class="text-xs text-slate-400 font-light leading-relaxed">
+            Every itinerary is calculated with road elevations, low-impact pacing, verified local operators, and GPS-verified trailheads.
           </p>
-          <a href="travel/meghalaya-blue-water-circuit.html" class="text-xs font-semibold uppercase tracking-wider text-emerald-400 hover:text-emerald-300 inline-flex items-center gap-1">Explore Travel Masterplan &rarr;</a>
+        </div>
+
+        <div class="p-6 rounded-2xl border border-slate-800 bg-slate-900/30">
+          <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 mb-4 font-bold">
+            🌐
+          </div>
+          <h3 class="font-cinzel text-lg text-white font-bold mb-2">Decoupled Architecture</h3>
+          <p class="text-xs text-slate-400 font-light leading-relaxed">
+            Built as independent spokes under a unified domain. Each spoke maintains its own dedicated experience, styling tokens, and deployment pipeline.
+          </p>
+        </div>
+
+        <div class="p-6 rounded-2xl border border-slate-800 bg-slate-900/30">
+          <div class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 mb-4 font-bold">
+            ✨
+          </div>
+          <h3 class="font-cinzel text-lg text-white font-bold mb-2">Zero Layout Shifts</h3>
+          <p class="text-xs text-slate-400 font-light leading-relaxed">
+            Optimized display tiers with native aspect-ratio containers, smooth modal micro-interactions, and fast load times.
+          </p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="border-t border-slate-900 bg-[#05070a] py-12 px-6 mt-auto">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-slate-500">
-      <div class="flex flex-col items-center md:items-start">
-        <span class="font-cinzel tracking-widest text-slate-300 font-bold uppercase text-sm">Shashikant Prasad</span>
-        <span>&copy; 2026 Shashikant Prasad. All rights reserved.</span>
+  <!-- Contact Section -->
+  <section id="contact" class="max-w-7xl mx-auto px-6 py-16 border-t border-slate-900 text-center w-full">
+    <div class="max-w-2xl mx-auto">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-400 text-xs font-semibold tracking-widest uppercase mb-4">
+        Direct Inquiries
       </div>
-      <div class="flex items-center gap-6">
-        <a href="#photography" class="hover:text-slate-300 transition-colors">Photography</a>
-        <a href="travel/" class="hover:text-slate-300 transition-colors">Travel</a>
-        <a href="#about" class="hover:text-slate-300 transition-colors">About</a>
-        <a href="#contact" class="hover:text-slate-300 transition-colors">Contact</a>
+      <h2 class="font-cinzel text-3xl font-bold text-white mb-4">Let&apos;s Connect</h2>
+      <p class="text-slate-400 text-sm font-light leading-relaxed mb-8">
+        For fine-art print acquisitions, licensing, expedition collaboration, or technical discussions, reach out directly.
+      </p>
+      <a href="mailto:shashikantprasadweb@gmail.com" class="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-white text-slate-950 font-bold text-sm tracking-wide shadow-lg hover:bg-slate-200 transition-all">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+        shashikantprasadweb@gmail.com
+      </a>
+    </div>
+  </section>
+
+  <!-- Global Footer -->
+  <footer class="border-t border-slate-900 bg-[#05070a] py-12 px-6 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
+      <div class="flex items-center gap-3">
+        <img src="favicon.svg" alt="SP Camera" class="w-6 h-6 rounded border border-emerald-500/30">
+        <span class="font-cinzel text-sm text-slate-300 uppercase tracking-widest font-semibold">Shashikant Prasad</span>
+        <span class="text-slate-600">&bull;</span>
+        <span class="text-emerald-500/80 font-medium">Main Hub Portal</span>
       </div>
+      <div class="flex items-center gap-6 text-slate-400">
+        <a href="/" class="text-white hover:text-white transition-colors">Main Hub</a>
+        <a href="photography/" class="hover:text-amber-400 transition-colors">Photography Showcase</a>
+        <a href="travel/" class="hover:text-emerald-400 transition-colors">Travel Expeditions</a>
+        <a href="travel/meghalaya-blue-water-circuit.html" class="hover:text-emerald-400 transition-colors">Meghalaya Circuit</a>
+      </div>
+      <p>&copy; 2026 Shashikant Prasad. All rights reserved.</p>
     </div>
   </footer>
 
-  <!-- Lightbox Modal -->
-  <div id="lightbox-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-[#07090e]/95 backdrop-blur-2xl transition-all duration-300">
-    <div id="lightbox-backdrop" class="absolute inset-0"></div>
-
-    <!-- Top Navigation Bar -->
-    <div class="absolute top-0 inset-x-0 z-20 flex items-center justify-between px-6 py-5 border-b border-white/5 bg-[#07090e]/60 backdrop-blur-md">
-      <div class="flex items-center gap-4">
-        <span class="font-cinzel tracking-widest text-sm font-bold text-white uppercase">Shashikant Prasad</span>
-        <span class="text-slate-600">&bull;</span>
-        <span id="lightbox-counter" class="text-xs font-mono tracking-widest text-slate-400">01 / 15</span>
-      </div>
-      <button id="lightbox-close" aria-label="Close Lightbox" class="p-2 rounded-full text-slate-400 hover:text-white hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-amber-400">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-      </button>
-    </div>
-
-    <!-- Side Chevrons -->
-    <button id="lightbox-prev" aria-label="Previous Photograph" class="absolute left-4 z-20 p-3 rounded-full text-slate-400 hover:text-white hover:bg-white/10 transition-all focus:outline-none focus:ring-2 focus:ring-amber-400">
-      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7"></path>
-      </svg>
-    </button>
-    <button id="lightbox-next" aria-label="Next Photograph" class="absolute right-4 z-20 p-3 rounded-full text-slate-400 hover:text-white hover:bg-white/10 transition-all focus:outline-none focus:ring-2 focus:ring-amber-400">
-      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
-      </svg>
-    </button>
-
-    <!-- Main Content Stage -->
-    <div class="relative z-10 max-w-6xl w-full h-[85vh] flex flex-col items-center justify-between px-6 pt-20 pb-4">
-      <!-- Centered Photo Frame -->
-      <div class="relative flex-1 w-full flex items-center justify-center overflow-hidden my-auto">
-        <img id="lightbox-image" src="" alt="" class="max-h-full max-w-full object-contain rounded-lg shadow-2xl transition-all duration-300" />
-      </div>
-
-      <!-- Bottom Metadata Panel -->
-      <div class="w-full mt-4 p-5 rounded-2xl bg-slate-950/80 border border-slate-800/80 backdrop-blur-md flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div class="flex-1">
-          <div class="flex items-center gap-3 mb-1">
-            <span id="lightbox-category" class="text-[10px] font-semibold tracking-widest uppercase text-amber-400">Night Architecture</span>
-            <span class="text-slate-600">&bull;</span>
-            <span id="lightbox-location" class="text-xs text-slate-400">Amsterdam, Netherlands</span>
-          </div>
-          <h2 id="lightbox-title" class="font-cinzel text-xl text-white font-bold mb-1">Amsterdam Nocturne</h2>
-          <p id="lightbox-story" class="text-xs text-slate-400 font-light max-w-2xl leading-relaxed">Atmospheric long exposure capturing calm waters and canal bridges.</p>
-        </div>
-        
-        <div class="flex items-center">
-          <div id="lightbox-exif" class="px-4 py-2 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300 tracking-wider">
-            Sony ILCE-7M3 &bull; 17mm &bull; f/8 &bull; 30.0s &bull; ISO 100
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Scripts -->
-  <script src="assets/js/gallery-data.js"></script>
-  <script src="assets/js/gallery.js"></script>
 </body>
 </html>

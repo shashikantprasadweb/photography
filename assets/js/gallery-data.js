@@ -4,7 +4,7 @@
  * Total showcase items: 45
  */
 
-const GALLERY_DATA = [
+window.GALLERY_DATA = [
   {
     "id": "gal-01",
     "title": "Andaman Horizon #01",

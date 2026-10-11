@@ -2,8 +2,9 @@
 RewriteEngine On
 RewriteBase /
 
-# Ensure /photography cleanly routes to index.html if accessed directly
-RewriteRule ^photography/?$ index.html [L]
+# Ensure trailing slash for directory requests so relative assets resolve properly
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^(.+[^/])$ $1/ [R=301,L]
 
-# Prevent directory browsing and enable symlink following
+# Prevent directory browsing
 Options -Indexes +FollowSymLinks
