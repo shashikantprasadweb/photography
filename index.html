@@ -6,6 +6,7 @@
   <title>Shashikant Prasad — Visual Storyteller & Explorer</title>
   <meta name="description" content="Visual Storytelling, Fine-Art Photography & Travel Chronicles by Shashikant Prasad.">
   <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -31,14 +32,17 @@
   <!-- Navigation -->
   <header class="fixed top-0 inset-x-0 z-50 glass-nav">
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-      <a href="index.html" class="flex flex-col">
-        <span class="font-cinzel tracking-widest text-lg font-bold text-white uppercase">Shashikant Prasad</span>
-        <span class="text-[10px] tracking-[0.25em] text-slate-400 uppercase">Visuals &amp; Chronicles</span>
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img src="favicon.svg" alt="SP Camera" class="w-9 h-9 rounded-lg shadow-sm border border-emerald-500/30 group-hover:scale-105 transition-transform">
+        <div class="flex flex-col">
+          <span class="font-cinzel tracking-widest text-lg font-bold text-white uppercase group-hover:text-emerald-300 transition-colors">Shashikant Prasad</span>
+          <span class="text-[10px] tracking-[0.25em] text-slate-400 uppercase">Visuals &amp; Chronicles</span>
+        </div>
       </a>
 
       <nav class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
         <a href="#photography" class="text-amber-400 hover:text-white transition-colors">Photography</a>
-        <a href="#travel" class="text-slate-400 hover:text-white transition-colors">Travel</a>
+        <a href="travel/" class="text-slate-400 hover:text-white transition-colors">Travel</a>
         <a href="#expeditions" class="text-slate-400 hover:text-white transition-colors">Expeditions</a>
         <a href="#about" class="text-slate-400 hover:text-white transition-colors">About</a>
       </nav>
@@ -99,7 +103,7 @@
           <p class="text-slate-400 text-sm leading-relaxed mb-6">
             A photographer's guide through misty lakes, historical alpine routes, and golden beech canopies across Berchtesgaden and Königssee.
           </p>
-          <a href="#" class="text-xs font-semibold uppercase tracking-wider text-amber-400 hover:text-amber-300 inline-flex items-center gap-1">Explore Travel Field Note &rarr;</a>
+          <a href="travel/" class="text-xs font-semibold uppercase tracking-wider text-amber-400 hover:text-amber-300 inline-flex items-center gap-1">Explore Travel Portal &rarr;</a>
         </div>
 
         <div class="p-8 rounded-2xl border border-slate-800/80 bg-slate-900/30 hover:border-slate-700 transition-all">
@@ -123,7 +127,7 @@
       </div>
       <div class="flex items-center gap-6">
         <a href="#photography" class="hover:text-slate-300 transition-colors">Photography</a>
-        <a href="#travel" class="hover:text-slate-300 transition-colors">Travel</a>
+        <a href="travel/" class="hover:text-slate-300 transition-colors">Travel</a>
         <a href="#about" class="hover:text-slate-300 transition-colors">About</a>
         <a href="#contact" class="hover:text-slate-300 transition-colors">Contact</a>
       </div>
