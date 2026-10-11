@@ -10,3 +10,13 @@ node_modules/
 .env
 deploy-*.sh
 scripts/
+BACKLOG.md
+CLAUDE.md
+GEMINI.md
+archive/
+chat-logs/
+curated_landscapes_2021_2026/
+processed_real_images/
+real_candidates/
+real_images_downloads/
+utility/
