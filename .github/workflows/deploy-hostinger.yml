@@ -1,4 +1,9 @@
-name: Deploy Photography to Hostinger
+name: Deploy Hub and Photography to Hostinger
+
+# Code only. Photos and videos are never in Git; they are uploaded directly
+# with scripts/deploy-media.sh. The Travel spoke has its own repo/workflow.
+# server-dir is relative to the FTP root (= public_html), as proven by the
+# Travel workflow history ("adjust FTP target directory relative to public_html").
 
 on:
   push:
@@ -11,43 +16,41 @@ jobs:
     name: Deploy to Hostinger
     runs-on: ubuntu-latest
     steps:
-      - name: 🚚 Get latest code
+      - name: Get latest code
         uses: actions/checkout@v4
 
-      - name: 🌐 Deploy Staging
+      - name: Deploy Staging
         if: github.ref == 'refs/heads/staging'
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: public_html/staging/
-          state-name: .ftp-deploy-sync-staging.json
+          protocol: ftps
+          security: loose
+          server-dir: staging/
+          state-name: .ftp-deploy-sync-hub-staging-v2.json
           exclude: |
             **/.git*
             **/.git*/**
-            **/.agents/**
-            **/knowledge-vault/**
-            **/workstreams/**
-            **/logs/**
-            **/scripts/**
-            **/curated_landscapes_2021_2026/**
+            **/travel/**
+            **/travel-blog/**
+            README.md
 
-      - name: 🚀 Deploy Production
+      - name: Deploy Production
         if: github.ref == 'refs/heads/main'
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: public_html/
-          state-name: .ftp-deploy-sync-live.json
+          protocol: ftps
+          security: loose
+          server-dir: ./
+          state-name: .ftp-deploy-sync-hub-live-v2.json
           exclude: |
             **/.git*
             **/.git*/**
-            **/.agents/**
-            **/knowledge-vault/**
-            **/workstreams/**
-            **/logs/**
-            **/scripts/**
-            **/curated_landscapes_2021_2026/**
+            **/travel/**
+            **/travel-blog/**
+            README.md

@@ -20,3 +20,14 @@ processed_real_images/
 real_candidates/
 real_images_downloads/
 utility/
+
+# Travel spoke is its own repository (nested); never committed from here
+travel/
+
+# Photos and videos never go to Git; uploaded with scripts/deploy-media.sh
+assets/images/
+*.mp4
+*.mov
+
+# Duplicate legacy page, not deployed
+travel-blog/

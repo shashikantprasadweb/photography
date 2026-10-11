@@ -1,11 +1,8 @@
-# Shashikant Prasad — Official Web Platform
+# Shashikant Prasad — Hub & Photography
 
-Personal brand platform showcasing fine-art photography, high-impact travel chronicles, and creative expeditions.
+Main page and Photography spoke of shashikantprasad.com.
+Part of a Hub & Spoke platform: the Travel spoke lives in its own repository.
 
-## Architecture & Workspaces
-This workspace operates with dedicated AI directives and inherits universal web standards via `scripts/sync_workspace_rules.py`.
-
-## Quick Start & Deployment
-- **Staging Deploy:** `./scripts/deploy-staging.sh`
-- **Live Deploy:** `./scripts/deploy-live.sh`
-- **Sync Rules with Other Workspaces:** `python3 scripts/sync_workspace_rules.py`
+## Deployment
+- Code deploys by GitHub Actions: `staging` -> staging site, `main` -> production.
+- Photos and videos are not stored in Git; they are uploaded directly to the server.
