@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Chronicles &amp; Expeditions — Shashikant Prasad</title>
+  <meta name="description" content="Curated expedition masterplans, high-altitude trail guides, and field dispatches by Shashikant Prasad.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .font-cinzel { font-family: 'Cinzel', serif; }
+    .glass-nav {
+      background: rgba(10, 15, 29, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .expedition-card {
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .expedition-card:hover {
+      transform: translateY(-4px);
+    }
+  </style>
+</head>
+<body class="bg-[#07090e] text-slate-200 antialiased min-h-screen flex flex-col selection:bg-amber-500/20 selection:text-amber-300">
+
+  <!-- Navigation -->
+  <header class="fixed top-0 inset-x-0 z-50 glass-nav">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex flex-col">
+        <span class="font-cinzel tracking-widest text-lg font-bold text-white uppercase">Shashikant Prasad</span>
+        <span class="text-[10px] tracking-[0.25em] text-emerald-400 uppercase">Travel &amp; Expeditions</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
+        <a href="#featured" class="text-emerald-400 hover:text-white transition-colors">Masterplans</a>
+        <a href="#destinations" class="text-slate-400 hover:text-white transition-colors">Destinations</a>
+        <a href="https://shashikantprasad.com/photography" class="text-slate-400 hover:text-white transition-colors">Photography</a>
+        <a href="https://shashikantprasad.com" class="text-slate-400 hover:text-white transition-colors">Main Hub</a>
+      </nav>
+
+      <a href="https://shashikantprasad.com" class="inline-flex items-center px-4 py-2 rounded-full border border-slate-700 text-xs font-semibold uppercase tracking-wider text-slate-300 hover:bg-slate-800 transition-all">
+        &larr; Back to Hub
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative pt-36 pb-20 px-6 max-w-7xl mx-auto text-center flex flex-col items-center">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/5 text-emerald-400 text-xs font-medium tracking-widest uppercase mb-6">
+      Curated Expedition Masterplans &bull; Field Notes &bull; Logistics
+    </div>
+    <h1 class="font-cinzel text-4xl sm:text-6xl font-bold tracking-tight text-white max-w-4xl leading-tight mb-6">
+      Traversing High Ridges &amp; Untamed Waterways
+    </h1>
+    <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto font-light leading-relaxed mb-10">
+      Meticulously researched day-by-day travel masterplans, photography vantage points, terrain ergonomics, and family logistics.
+    </p>
+
+    <!-- Category Filter Bar -->
+    <div class="flex flex-wrap justify-center gap-2 mb-4">
+      <button class="px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase bg-emerald-500 text-slate-950 transition-all">All Expeditions</button>
+      <button class="px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-white transition-all">Northeast India</button>
+      <button class="px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-white transition-all">Alpine Europe</button>
+      <button class="px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-white transition-all">Himalayas</button>
+    </div>
+  </section>
+
+  <!-- Featured Masterplans -->
+  <main id="featured" class="max-w-7xl mx-auto px-6 pb-24 w-full flex-grow">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- Masterplan 1: Meghalaya -->
+      <article class="expedition-card group rounded-2xl overflow-hidden border border-emerald-950/60 bg-slate-900/40 hover:border-emerald-500/40 flex flex-col justify-between">
+        <div>
+          <div class="aspect-[16/10] bg-slate-950 relative overflow-hidden">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Krang_Suri_Falls.jpg/640px-Krang_Suri_Falls.jpg" alt="Krang Suri Falls Meghalaya" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+            <div class="absolute top-3 left-3 bg-emerald-600/90 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-widest px-2.5 py-1 rounded-full">
+              Verified Masterplan
+            </div>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 text-xs font-mono text-emerald-400/90 mb-2">
+              <span>8 DAYS / 7 NIGHTS</span>
+              <span>&bull;</span>
+              <span>FAMILY CIRCUIT</span>
+            </div>
+            <h2 class="font-cinzel text-xl text-white font-bold mb-3 group-hover:text-emerald-300 transition-colors">
+              Meghalaya Turquoise Water Circuit
+            </h2>
+            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+              Complete door-to-door family masterplan: Krang Suri, Dawki Umngot river boating, and single living root bridge with zero multi-thousand step strain.
+            </p>
+          </div>
+        </div>
+        <div class="px-6 pb-6 pt-2 border-t border-slate-800/60 flex items-center justify-between">
+          <span class="text-xs text-slate-400 font-mono">Budget: ~₹1.33L (3 Pax)</span>
+          <a href="meghalaya-blue-water-circuit.html" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs font-semibold hover:bg-emerald-500 hover:text-slate-950 transition-all">
+            Open Circuit &rarr;
+          </a>
+        </div>
+      </article>
+
+      <!-- Expedition 2: Southern Bavaria -->
+      <article class="expedition-card group rounded-2xl overflow-hidden border border-slate-800/80 bg-slate-900/40 hover:border-amber-500/40 flex flex-col justify-between">
+        <div>
+          <div class="aspect-[16/10] bg-slate-950 relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-transparent"></div>
+            <span class="text-amber-400 font-cinzel text-lg font-bold z-10">Bavaria Field Log</span>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 text-xs font-mono text-amber-400/90 mb-2">
+              <span>FIELD NOTES</span>
+              <span>&bull;</span>
+              <span>ALPINE ROUTE</span>
+            </div>
+            <h2 class="font-cinzel text-xl text-white font-bold mb-3 group-hover:text-amber-300 transition-colors">
+              Autumn in Southern Bavaria: Golden Hours
+            </h2>
+            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+              Chasing morning mist across Berchtesgaden, Königssee electric boats, and panoramic alpine passes in peak October foliage.
+            </p>
+          </div>
+        </div>
+        <div class="px-6 pb-6 pt-2 border-t border-slate-800/60 flex items-center justify-between">
+          <span class="text-xs text-slate-400 font-mono">Transit: D-Ticket + Bus</span>
+          <span class="text-xs text-slate-500 italic">Field Note Pending</span>
+        </div>
+      </article>
+
+      <!-- Expedition 3: Kashmir Valley -->
+      <article class="expedition-card group rounded-2xl overflow-hidden border border-slate-800/80 bg-slate-900/40 hover:border-blue-500/40 flex flex-col justify-between">
+        <div>
+          <div class="aspect-[16/10] bg-slate-950 relative overflow-hidden flex items-center justify-center">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-900/60 to-transparent"></div>
+            <span class="text-blue-400 font-cinzel text-lg font-bold z-10">Kashmir Roadmap</span>
+          </div>
+          <div class="p-6">
+            <div class="flex items-center gap-2 text-xs font-mono text-blue-400/90 mb-2">
+              <span>5-YEAR ROADMAP</span>
+              <span>&bull;</span>
+              <span>STAGE 2</span>
+            </div>
+            <h2 class="font-cinzel text-xl text-white font-bold mb-3 group-hover:text-blue-300 transition-colors">
+              Kashmir: Alpine Meadows &amp; Valley Horizons
+            </h2>
+            <p class="text-slate-400 text-sm leading-relaxed mb-4">
+              Pacing high-altitude valleys, Dal Lake morning reflections, and serene pine forests planned for Age 41 family expedition.
+            </p>
+          </div>
+        </div>
+        <div class="px-6 pb-6 pt-2 border-t border-slate-800/60 flex items-center justify-between">
+          <span class="text-xs text-slate-400 font-mono">Target: Autumn 2027</span>
+          <span class="text-xs text-slate-500 italic">In Planning</span>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-900 bg-[#05070a] py-12 px-6 mt-auto">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-slate-500">
+      <div class="flex flex-col items-center md:items-start">
+        <span class="font-cinzel tracking-widest text-slate-300 font-bold uppercase text-sm">Shashikant Prasad</span>
+        <span>&copy; 2026 Shashikant Prasad. All rights reserved.</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="https://shashikantprasad.com" class="hover:text-slate-300 transition-colors">Main Hub</a>
+        <a href="https://shashikantprasad.com/photography" class="hover:text-slate-300 transition-colors">Photography</a>
+        <a href="index.html" class="hover:text-slate-300 transition-colors">Travel</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
