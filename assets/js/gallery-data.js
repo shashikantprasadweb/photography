@@ -1,9 +1,3 @@
-/**
- * Production Master Gallery Dataset — Shashikant Prasad Platform
- * 2021–2026 Curated Fine-Art Landscapes & Expeditions
- * Total showcase items: 45
- */
-
 window.GALLERY_DATA = [
   {
     "id": "gal-01",
@@ -186,24 +180,6 @@ window.GALLERY_DATA = [
     "story": "Untouched turquoise horizons, tropical sunset gradients, and ancient coastal driftwood along Radhanagar Beach."
   },
   {
-    "id": "gal-11",
-    "title": "Bay of Bengal Vista #01",
-    "category": "coastal",
-    "categoryLabel": "Coastal & Islands",
-    "collection": "Andaman_Islands",
-    "image": "assets/images/photography/andaman_islands/2026_andaman_islands_01.jpg",
-    "thumbnail": "assets/images/photography/andaman_islands/2026_andaman_islands_01_thumb.jpg",
-    "location": "Andaman Islands, India",
-    "camera": "SONY ILCE-7M3",
-    "exif": "28mm \u2022 f/4.5 \u2022 1/640s \u2022 ISO 100",
-    "focalLength": "28mm",
-    "aperture": "f/4.5",
-    "shutter": "1/640s",
-    "iso": "ISO 100",
-    "date": "2026-01-06",
-    "story": "Lush coastal mangroves, open ocean swells, and tranquil maritime landscapes across the remote archipelago."
-  },
-  {
     "id": "gal-12",
     "title": "Bay of Bengal Vista #02",
     "category": "coastal",
@@ -220,60 +196,6 @@ window.GALLERY_DATA = [
     "iso": "ISO 100",
     "date": "2026-01-06",
     "story": "Lush coastal mangroves, open ocean swells, and tranquil maritime landscapes across the remote archipelago."
-  },
-  {
-    "id": "gal-13",
-    "title": "Bay of Bengal Vista #03",
-    "category": "coastal",
-    "categoryLabel": "Coastal & Islands",
-    "collection": "Andaman_Islands",
-    "image": "assets/images/photography/andaman_islands/2026_andaman_islands_03.jpg",
-    "thumbnail": "assets/images/photography/andaman_islands/2026_andaman_islands_03_thumb.jpg",
-    "location": "Andaman Islands, India",
-    "camera": "SONY ILCE-7M3",
-    "exif": "28mm \u2022 f/4.5 \u2022 1/640s \u2022 ISO 100",
-    "focalLength": "28mm",
-    "aperture": "f/4.5",
-    "shutter": "1/640s",
-    "iso": "ISO 100",
-    "date": "2026-01-06",
-    "story": "Lush coastal mangroves, open ocean swells, and tranquil maritime landscapes across the remote archipelago."
-  },
-  {
-    "id": "gal-14",
-    "title": "Bay of Bengal Vista #04",
-    "category": "coastal",
-    "categoryLabel": "Coastal & Islands",
-    "collection": "Andaman_Islands",
-    "image": "assets/images/photography/andaman_islands/2026_andaman_islands_04.jpg",
-    "thumbnail": "assets/images/photography/andaman_islands/2026_andaman_islands_04_thumb.jpg",
-    "location": "Andaman Islands, India",
-    "camera": "SONY ILCE-7M3",
-    "exif": "17mm \u2022 f/4.5 \u2022 1/640s \u2022 ISO 100",
-    "focalLength": "17mm",
-    "aperture": "f/4.5",
-    "shutter": "1/640s",
-    "iso": "ISO 100",
-    "date": "2026-01-06",
-    "story": "Lush coastal mangroves, open ocean swells, and tranquil maritime landscapes across the remote archipelago."
-  },
-  {
-    "id": "gal-15",
-    "title": "Alpine Reflection #01",
-    "category": "alps",
-    "categoryLabel": "Alps & Alpine Lakes",
-    "collection": "Munich_Salzburg_Hallstatt",
-    "image": "assets/images/photography/munich_salzburg_hallstatt/2024_munich_salzburg_hallstatt_01.jpg",
-    "thumbnail": "assets/images/photography/munich_salzburg_hallstatt/2024_munich_salzburg_hallstatt_01_thumb.jpg",
-    "location": "Hallstatt & Salzburg, Austria",
-    "camera": "samsung Galaxy A54 5G",
-    "exif": "6mm \u2022 f/1.8 \u2022 1/4219s \u2022 ISO 40",
-    "focalLength": "6mm",
-    "aperture": "f/1.8",
-    "shutter": "1/4219s",
-    "iso": "ISO 40",
-    "date": "2024-03-31",
-    "story": "Dramatic morning mist over Alpine waters, historic pastel boathouses, and towering limestone peaks across the Salzkammergut region."
   },
   {
     "id": "gal-16",
@@ -510,24 +432,6 @@ window.GALLERY_DATA = [
     "story": "Iconic cityscapes of the Dutch canal ring, framing quintessential 17th-century architecture and waterfront promenades."
   },
   {
-    "id": "gal-29",
-    "title": "Canal Ring Vista #03",
-    "category": "urban",
-    "categoryLabel": "Canal Chronicles",
-    "collection": "Amsterdam_Canals_D1",
-    "image": "assets/images/photography/amsterdam_canals_d1/2022_amsterdam_canals_d1_03.jpg",
-    "thumbnail": "assets/images/photography/amsterdam_canals_d1/2022_amsterdam_canals_d1_03_thumb.jpg",
-    "location": "Amsterdam, Netherlands",
-    "camera": "SONY ILCE-7M3",
-    "exif": "17mm \u2022 f/2.8 \u2022 1/40s \u2022 ISO 100",
-    "focalLength": "17mm",
-    "aperture": "f/2.8",
-    "shutter": "1/40s",
-    "iso": "ISO 100",
-    "date": "2022-07-23",
-    "story": "Iconic cityscapes of the Dutch canal ring, framing quintessential 17th-century architecture and waterfront promenades."
-  },
-  {
     "id": "gal-30",
     "title": "Historic Gracht Rhythm #01",
     "category": "urban",
@@ -726,24 +630,6 @@ window.GALLERY_DATA = [
     "story": "High-altitude aerial perspectives revealing geometric waterways, agricultural patches, and broad horizons."
   },
   {
-    "id": "gal-41",
-    "title": "Wannsee Serenity #01",
-    "category": "wild",
-    "categoryLabel": "Aerial & Wilderness",
-    "collection": "Wansee_Berlin",
-    "image": "assets/images/photography/wansee_berlin/2022_wansee_berlin_01.jpg",
-    "thumbnail": "assets/images/photography/wansee_berlin/2022_wansee_berlin_01_thumb.jpg",
-    "location": "Wannsee, Berlin, Germany",
-    "camera": "SONY ILCE-7M3",
-    "exif": "17mm \u2022 f/4.5 \u2022 1/3200s \u2022 ISO 100",
-    "focalLength": "17mm",
-    "aperture": "f/4.5",
-    "shutter": "1/3200s",
-    "iso": "ISO 100",
-    "date": "2022-04-16",
-    "story": "Placid lake surfaces, fringing birch canopies, and gentle ripple reflections during quiet Brandenburg mornings."
-  },
-  {
     "id": "gal-42",
     "title": "Wannsee Serenity #02",
     "category": "wild",
@@ -816,7 +702,3 @@ window.GALLERY_DATA = [
     "story": "Atmospheric forest light, pristine water reflections, and natural textures captured during exploratory walks."
   }
 ];
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = GALLERY_DATA;
-}

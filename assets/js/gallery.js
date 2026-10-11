@@ -139,6 +139,10 @@
     updateLightboxContent();
 
     lightbox.classList.remove('hidden');
+    requestAnimationFrame(() => {
+      lightbox.classList.remove('opacity-0');
+      lightbox.classList.add('opacity-100');
+    });
     document.body.classList.add('overflow-hidden');
 
     if (lightboxClose) lightboxClose.focus();
@@ -146,7 +150,11 @@
 
   function closeLightbox() {
     if (!lightbox) return;
-    lightbox.classList.add('hidden');
+    lightbox.classList.remove('opacity-100');
+    lightbox.classList.add('opacity-0');
+    setTimeout(() => {
+      lightbox.classList.add('hidden');
+    }, 300);
     document.body.classList.remove('overflow-hidden');
   }
 
