@@ -38,7 +38,7 @@
 
       <nav class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
         <a href="#photography" class="text-amber-400 hover:text-white transition-colors">Photography</a>
-        <a href="#journal" class="text-slate-400 hover:text-white transition-colors">Travel Journal</a>
+        <a href="#travel" class="text-slate-400 hover:text-white transition-colors">Travel</a>
         <a href="#expeditions" class="text-slate-400 hover:text-white transition-colors">Expeditions</a>
         <a href="#about" class="text-slate-400 hover:text-white transition-colors">About</a>
       </nav>
@@ -63,63 +63,27 @@
 
     <!-- Filter Bar -->
     <div class="flex flex-wrap justify-center gap-2 mb-12">
-      <button class="px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase bg-white text-slate-900 transition-all">All Works</button>
-      <button class="px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-white transition-all">Landscapes</button>
-      <button class="px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-white transition-all">Wilderness</button>
-      <button class="px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-white transition-all">Travel Chronicles</button>
+      <button data-category="all" class="filter-btn px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase bg-white text-slate-900 shadow-md transition-all">All Works</button>
+      <button data-category="night" class="filter-btn px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-white transition-all">Night Architecture</button>
+      <button data-category="urban" class="filter-btn px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-white transition-all">Canal Chronicles</button>
+      <button data-category="landscape" class="filter-btn px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-white transition-all">Coastal Horizons</button>
     </div>
   </section>
 
   <!-- Photography Showcase Grid -->
   <main id="photography" class="max-w-7xl mx-auto px-6 pb-24 w-full flex-grow">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-      <!-- Card 1 -->
-      <article class="gallery-card group relative rounded-2xl overflow-hidden border border-slate-800/80 bg-slate-900/40">
-        <div class="aspect-[4/5] bg-gradient-to-b from-slate-800/40 to-slate-950 flex items-center justify-center relative overflow-hidden">
-          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: radial-gradient(circle at 50% 40%, rgba(245, 158, 11, 0.15), transparent 70%);"></div>
-          <div class="text-center p-6 z-10">
-            <span class="text-amber-400 text-xs font-semibold tracking-widest uppercase mb-2 block">Alpine Horizons</span>
-            <h3 class="font-cinzel text-xl text-white font-bold mb-1">Bavarian Autumn Mist</h3>
-            <p class="text-xs text-slate-400 font-mono">Germany &bull; 35mm &bull; f/2.8 &bull; 1/500s</p>
-          </div>
-        </div>
-      </article>
-
-      <!-- Card 2 -->
-      <article class="gallery-card group relative rounded-2xl overflow-hidden border border-slate-800/80 bg-slate-900/40">
-        <div class="aspect-[4/5] bg-gradient-to-b from-slate-800/40 to-slate-950 flex items-center justify-center relative overflow-hidden">
-          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: radial-gradient(circle at 50% 40%, rgba(16, 185, 129, 0.15), transparent 70%);"></div>
-          <div class="text-center p-6 z-10">
-            <span class="text-emerald-400 text-xs font-semibold tracking-widest uppercase mb-2 block">High Altitude</span>
-            <h3 class="font-cinzel text-xl text-white font-bold mb-1">Northeast Indian Ridgelines</h3>
-            <p class="text-xs text-slate-400 font-mono">Sikkim &bull; 24mm &bull; f/4.0 &bull; 1/1000s</p>
-          </div>
-        </div>
-      </article>
-
-      <!-- Card 3 -->
-      <article class="gallery-card group relative rounded-2xl overflow-hidden border border-slate-800/80 bg-slate-900/40">
-        <div class="aspect-[4/5] bg-gradient-to-b from-slate-800/40 to-slate-950 flex items-center justify-center relative overflow-hidden">
-          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: radial-gradient(circle at 50% 40%, rgba(59, 130, 246, 0.15), transparent 70%);"></div>
-          <div class="text-center p-6 z-10">
-            <span class="text-blue-400 text-xs font-semibold tracking-widest uppercase mb-2 block">Expedition Journal</span>
-            <h3 class="font-cinzel text-xl text-white font-bold mb-1">Silence of the Valley</h3>
-            <p class="text-xs text-slate-400 font-mono">Austria &bull; 50mm &bull; f/1.8 &bull; 1/250s</p>
-          </div>
-        </div>
-      </article>
-
+    <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Dynamically populated by gallery.js -->
     </div>
   </main>
 
-  <!-- Travel Blog / Chronicles Teaser -->
-  <section id="journal" class="border-t border-slate-900 bg-slate-950/60 py-20 px-6">
+  <!-- Travel Section -->
+  <section id="travel" class="border-t border-slate-900 bg-slate-950/60 py-20 px-6">
     <div class="max-w-7xl mx-auto">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12">
         <div>
-          <span class="text-xs uppercase tracking-widest text-amber-400 font-semibold mb-2 block">Field Journals</span>
-          <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-white">Travel Chronicles &amp; Expeditions</h2>
+          <span class="text-xs uppercase tracking-widest text-amber-400 font-semibold mb-2 block">Chronicles &amp; Expeditions</span>
+          <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-white">Travel</h2>
         </div>
         <p class="text-slate-400 text-sm max-w-md mt-4 sm:mt-0">
           In-depth itineraries, field notes, photography guides, and logistics from journeys off the beaten path.
@@ -133,16 +97,16 @@
           <p class="text-slate-400 text-sm leading-relaxed mb-6">
             A photographer's guide through misty lakes, historical alpine routes, and golden beech canopies across Berchtesgaden and Königssee.
           </p>
-          <a href="#" class="text-xs font-semibold uppercase tracking-wider text-amber-400 hover:text-amber-300 inline-flex items-center gap-1">Read Journal Entry &rarr;</a>
+          <a href="#" class="text-xs font-semibold uppercase tracking-wider text-amber-400 hover:text-amber-300 inline-flex items-center gap-1">Explore Travel Field Note &rarr;</a>
         </div>
 
         <div class="p-8 rounded-2xl border border-slate-800/80 bg-slate-900/30 hover:border-slate-700 transition-all">
-          <span class="text-xs font-mono text-emerald-400/80 block mb-2">FIELD PLANNING &bull; HIMALAYAN TRAIL</span>
-          <h3 class="font-cinzel text-2xl font-bold text-white mb-3">Northeast India: Traversing Monasteries &amp; Cloud Forests</h3>
+          <span class="text-xs font-mono text-emerald-400/80 block mb-2">FIELD PLANNING &bull; NORTHEAST EXPEDITION</span>
+          <h3 class="font-cinzel text-2xl font-bold text-white mb-3">Meghalaya: Turquoise Water Circuit Masterplan</h3>
           <p class="text-slate-400 text-sm leading-relaxed mb-6">
-            High-altitude packing lists, local transit nuances, and shooting landscape panoramas under unpredictable mountain weather.
+            An 8-day expedition masterplan through Krang Shuri, Dawki, Umngot river, and living root bridges with timing and logistics.
           </p>
-          <a href="#" class="text-xs font-semibold uppercase tracking-wider text-emerald-400 hover:text-emerald-300 inline-flex items-center gap-1">Read Journal Entry &rarr;</a>
+          <a href="travel/meghalaya-blue-water-circuit.html" class="text-xs font-semibold uppercase tracking-wider text-emerald-400 hover:text-emerald-300 inline-flex items-center gap-1">Explore Travel Masterplan &rarr;</a>
         </div>
       </div>
     </div>
@@ -157,12 +121,73 @@
       </div>
       <div class="flex items-center gap-6">
         <a href="#photography" class="hover:text-slate-300 transition-colors">Photography</a>
-        <a href="#journal" class="hover:text-slate-300 transition-colors">Journal</a>
+        <a href="#travel" class="hover:text-slate-300 transition-colors">Travel</a>
         <a href="#about" class="hover:text-slate-300 transition-colors">About</a>
         <a href="#contact" class="hover:text-slate-300 transition-colors">Contact</a>
       </div>
     </div>
   </footer>
 
+  <!-- Lightbox Modal -->
+  <div id="lightbox-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-[#07090e]/95 backdrop-blur-2xl transition-all duration-300">
+    <div id="lightbox-backdrop" class="absolute inset-0"></div>
+
+    <!-- Top Navigation Bar -->
+    <div class="absolute top-0 inset-x-0 z-20 flex items-center justify-between px-6 py-5 border-b border-white/5 bg-[#07090e]/60 backdrop-blur-md">
+      <div class="flex items-center gap-4">
+        <span class="font-cinzel tracking-widest text-sm font-bold text-white uppercase">Shashikant Prasad</span>
+        <span class="text-slate-600">&bull;</span>
+        <span id="lightbox-counter" class="text-xs font-mono tracking-widest text-slate-400">01 / 15</span>
+      </div>
+      <button id="lightbox-close" aria-label="Close Lightbox" class="p-2 rounded-full text-slate-400 hover:text-white hover:bg-white/10 transition-colors focus:outline-none focus:ring-2 focus:ring-amber-400">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Side Chevrons -->
+    <button id="lightbox-prev" aria-label="Previous Photograph" class="absolute left-4 z-20 p-3 rounded-full text-slate-400 hover:text-white hover:bg-white/10 transition-all focus:outline-none focus:ring-2 focus:ring-amber-400">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 19l-7-7 7-7"></path>
+      </svg>
+    </button>
+    <button id="lightbox-next" aria-label="Next Photograph" class="absolute right-4 z-20 p-3 rounded-full text-slate-400 hover:text-white hover:bg-white/10 transition-all focus:outline-none focus:ring-2 focus:ring-amber-400">
+      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </button>
+
+    <!-- Main Content Stage -->
+    <div class="relative z-10 max-w-6xl w-full h-[85vh] flex flex-col items-center justify-between px-6 pt-20 pb-4">
+      <!-- Centered Photo Frame -->
+      <div class="relative flex-1 w-full flex items-center justify-center overflow-hidden my-auto">
+        <img id="lightbox-image" src="" alt="" class="max-h-full max-w-full object-contain rounded-lg shadow-2xl transition-all duration-300" />
+      </div>
+
+      <!-- Bottom Metadata Panel -->
+      <div class="w-full mt-4 p-5 rounded-2xl bg-slate-950/80 border border-slate-800/80 backdrop-blur-md flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div class="flex-1">
+          <div class="flex items-center gap-3 mb-1">
+            <span id="lightbox-category" class="text-[10px] font-semibold tracking-widest uppercase text-amber-400">Night Architecture</span>
+            <span class="text-slate-600">&bull;</span>
+            <span id="lightbox-location" class="text-xs text-slate-400">Amsterdam, Netherlands</span>
+          </div>
+          <h2 id="lightbox-title" class="font-cinzel text-xl text-white font-bold mb-1">Amsterdam Nocturne</h2>
+          <p id="lightbox-story" class="text-xs text-slate-400 font-light max-w-2xl leading-relaxed">Atmospheric long exposure capturing calm waters and canal bridges.</p>
+        </div>
+        
+        <div class="flex items-center">
+          <div id="lightbox-exif" class="px-4 py-2 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300 tracking-wider">
+            Sony ILCE-7M3 &bull; 17mm &bull; f/8 &bull; 30.0s &bull; ISO 100
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/gallery-data.js"></script>
+  <script src="assets/js/gallery.js"></script>
 </body>
 </html>
