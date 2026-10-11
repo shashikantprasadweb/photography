@@ -8,3 +8,10 @@ RewriteRule ^(.+[^/])$ $1/ [R=301,L]
 
 # Prevent directory browsing
 Options -Indexes +FollowSymLinks
+
+# Cache control: Force revalidation on HTML and JS scripts to avoid stale client cache
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|htm|js)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+</IfModule>

@@ -46,6 +46,12 @@
   }
 
 
+  function resolveAssetPath(p) {
+    if (!p) return '';
+    if (p.startsWith('/') || p.startsWith('http')) return p;
+    return '/' + p;
+  }
+
   function renderGrid(items) {
     if (!gridContainer) return;
     gridContainer.innerHTML = '';
@@ -69,7 +75,7 @@
       card.innerHTML = `
         <div class="aspect-[4/5] relative overflow-hidden bg-slate-950">
           <img 
-            src="${item.thumbnail}" 
+            src="${resolveAssetPath(item.thumbnail)}" 
             alt="${item.title}" 
             loading="lazy"
             class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
@@ -149,7 +155,7 @@
     if (!item) return;
 
     if (lightboxImg) {
-      lightboxImg.src = item.image;
+      lightboxImg.src = resolveAssetPath(item.image);
       lightboxImg.alt = item.title;
     }
     if (lightboxTitle) lightboxTitle.textContent = item.title;
