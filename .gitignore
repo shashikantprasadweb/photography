@@ -1,0 +1,11 @@
+.DS_Store
+.agents/
+.claude/
+knowledge-vault/
+workstreams/
+logs/
+.user_uploaded/
+node_modules/
+*.log
+.env
+deploy-*.sh

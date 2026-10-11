@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shashikant Prasad — Visual Storyteller & Explorer</title>
+  <meta name="description" content="Visual Storytelling, Fine-Art Photography & Travel Chronicles by Shashikant Prasad.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .font-cinzel { font-family: 'Cinzel', serif; }
+    .glass-nav {
+      background: rgba(10, 15, 29, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .gallery-card {
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .gallery-card:hover {
+      transform: translateY(-4px);
+    }
+  </style>
+</head>
+<body class="bg-[#07090e] text-slate-200 antialiased min-h-screen flex flex-col selection:bg-amber-500/20 selection:text-amber-300">
+
+  <!-- Navigation -->
+  <header class="fixed top-0 inset-x-0 z-50 glass-nav">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex flex-col">
+        <span class="font-cinzel tracking-widest text-lg font-bold text-white uppercase">Shashikant Prasad</span>
+        <span class="text-[10px] tracking-[0.25em] text-slate-400 uppercase">Visuals &amp; Chronicles</span>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium tracking-wide">
+        <a href="#photography" class="text-amber-400 hover:text-white transition-colors">Photography</a>
+        <a href="#journal" class="text-slate-400 hover:text-white transition-colors">Travel Journal</a>
+        <a href="#expeditions" class="text-slate-400 hover:text-white transition-colors">Expeditions</a>
+        <a href="#about" class="text-slate-400 hover:text-white transition-colors">About</a>
+      </nav>
+
+      <a href="#contact" class="hidden sm:inline-flex items-center px-4 py-2 rounded-full border border-amber-500/40 text-xs font-semibold uppercase tracking-wider text-amber-300 hover:bg-amber-500/10 transition-all">
+        Inquire
+      </a>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative pt-36 pb-20 px-6 max-w-7xl mx-auto text-center flex flex-col items-center">
+    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-amber-500/30 bg-amber-500/5 text-amber-400 text-xs font-medium tracking-widest uppercase mb-6">
+      Fine-Art Photography &bull; Expeditions &bull; Field Notes
+    </div>
+    <h1 class="font-cinzel text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white max-w-4xl leading-tight mb-6">
+      Capturing Raw Landscapes &amp; Timeless Stories
+    </h1>
+    <p class="text-slate-400 text-base sm:text-lg max-w-2xl mx-auto font-light leading-relaxed mb-10">
+      A visual exploration of untouched horizons, atmospheric wilderness, and cultural journeys across the globe.
+    </p>
+
+    <!-- Filter Bar -->
+    <div class="flex flex-wrap justify-center gap-2 mb-12">
+      <button class="px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase bg-white text-slate-900 transition-all">All Works</button>
+      <button class="px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-white transition-all">Landscapes</button>
+      <button class="px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-white transition-all">Wilderness</button>
+      <button class="px-5 py-2 rounded-full text-xs font-semibold tracking-wider uppercase bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-white transition-all">Travel Chronicles</button>
+    </div>
+  </section>
+
+  <!-- Photography Showcase Grid -->
+  <main id="photography" class="max-w-7xl mx-auto px-6 pb-24 w-full flex-grow">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- Card 1 -->
+      <article class="gallery-card group relative rounded-2xl overflow-hidden border border-slate-800/80 bg-slate-900/40">
+        <div class="aspect-[4/5] bg-gradient-to-b from-slate-800/40 to-slate-950 flex items-center justify-center relative overflow-hidden">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: radial-gradient(circle at 50% 40%, rgba(245, 158, 11, 0.15), transparent 70%);"></div>
+          <div class="text-center p-6 z-10">
+            <span class="text-amber-400 text-xs font-semibold tracking-widest uppercase mb-2 block">Alpine Horizons</span>
+            <h3 class="font-cinzel text-xl text-white font-bold mb-1">Bavarian Autumn Mist</h3>
+            <p class="text-xs text-slate-400 font-mono">Germany &bull; 35mm &bull; f/2.8 &bull; 1/500s</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="gallery-card group relative rounded-2xl overflow-hidden border border-slate-800/80 bg-slate-900/40">
+        <div class="aspect-[4/5] bg-gradient-to-b from-slate-800/40 to-slate-950 flex items-center justify-center relative overflow-hidden">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: radial-gradient(circle at 50% 40%, rgba(16, 185, 129, 0.15), transparent 70%);"></div>
+          <div class="text-center p-6 z-10">
+            <span class="text-emerald-400 text-xs font-semibold tracking-widest uppercase mb-2 block">High Altitude</span>
+            <h3 class="font-cinzel text-xl text-white font-bold mb-1">Northeast Indian Ridgelines</h3>
+            <p class="text-xs text-slate-400 font-mono">Sikkim &bull; 24mm &bull; f/4.0 &bull; 1/1000s</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="gallery-card group relative rounded-2xl overflow-hidden border border-slate-800/80 bg-slate-900/40">
+        <div class="aspect-[4/5] bg-gradient-to-b from-slate-800/40 to-slate-950 flex items-center justify-center relative overflow-hidden">
+          <div class="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105" style="background-image: radial-gradient(circle at 50% 40%, rgba(59, 130, 246, 0.15), transparent 70%);"></div>
+          <div class="text-center p-6 z-10">
+            <span class="text-blue-400 text-xs font-semibold tracking-widest uppercase mb-2 block">Expedition Journal</span>
+            <h3 class="font-cinzel text-xl text-white font-bold mb-1">Silence of the Valley</h3>
+            <p class="text-xs text-slate-400 font-mono">Austria &bull; 50mm &bull; f/1.8 &bull; 1/250s</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Travel Blog / Chronicles Teaser -->
+  <section id="journal" class="border-t border-slate-900 bg-slate-950/60 py-20 px-6">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-12">
+        <div>
+          <span class="text-xs uppercase tracking-widest text-amber-400 font-semibold mb-2 block">Field Journals</span>
+          <h2 class="font-cinzel text-3xl sm:text-4xl font-bold text-white">Travel Chronicles &amp; Expeditions</h2>
+        </div>
+        <p class="text-slate-400 text-sm max-w-md mt-4 sm:mt-0">
+          In-depth itineraries, field notes, photography guides, and logistics from journeys off the beaten path.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="p-8 rounded-2xl border border-slate-800/80 bg-slate-900/30 hover:border-slate-700 transition-all">
+          <span class="text-xs font-mono text-amber-400/80 block mb-2">OCTOBER 2026 &bull; EXPEDITION NOTE</span>
+          <h3 class="font-cinzel text-2xl font-bold text-white mb-3">Autumn in Southern Bavaria: Chasing Golden Hours</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-6">
+            A photographer's guide through misty lakes, historical alpine routes, and golden beech canopies across Berchtesgaden and Königssee.
+          </p>
+          <a href="#" class="text-xs font-semibold uppercase tracking-wider text-amber-400 hover:text-amber-300 inline-flex items-center gap-1">Read Journal Entry &rarr;</a>
+        </div>
+
+        <div class="p-8 rounded-2xl border border-slate-800/80 bg-slate-900/30 hover:border-slate-700 transition-all">
+          <span class="text-xs font-mono text-emerald-400/80 block mb-2">FIELD PLANNING &bull; HIMALAYAN TRAIL</span>
+          <h3 class="font-cinzel text-2xl font-bold text-white mb-3">Northeast India: Traversing Monasteries &amp; Cloud Forests</h3>
+          <p class="text-slate-400 text-sm leading-relaxed mb-6">
+            High-altitude packing lists, local transit nuances, and shooting landscape panoramas under unpredictable mountain weather.
+          </p>
+          <a href="#" class="text-xs font-semibold uppercase tracking-wider text-emerald-400 hover:text-emerald-300 inline-flex items-center gap-1">Read Journal Entry &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-900 bg-[#05070a] py-12 px-6 mt-auto">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-slate-500">
+      <div class="flex flex-col items-center md:items-start">
+        <span class="font-cinzel tracking-widest text-slate-300 font-bold uppercase text-sm">Shashikant Prasad</span>
+        <span>&copy; 2026 Shashikant Prasad. All rights reserved.</span>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="#photography" class="hover:text-slate-300 transition-colors">Photography</a>
+        <a href="#journal" class="hover:text-slate-300 transition-colors">Journal</a>
+        <a href="#about" class="hover:text-slate-300 transition-colors">About</a>
+        <a href="#contact" class="hover:text-slate-300 transition-colors">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
