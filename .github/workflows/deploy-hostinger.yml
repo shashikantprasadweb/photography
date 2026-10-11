@@ -1,0 +1,53 @@
+name: Deploy Photography to Hostinger
+
+on:
+  push:
+    branches:
+      - staging
+      - main
+
+jobs:
+  web-deploy:
+    name: Deploy to Hostinger
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v4
+
+      - name: 🌐 Deploy Staging
+        if: github.ref == 'refs/heads/staging'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: public_html/staging/
+          state-name: .ftp-deploy-sync-staging.json
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.agents/**
+            **/knowledge-vault/**
+            **/workstreams/**
+            **/logs/**
+            **/scripts/**
+            **/curated_landscapes_2021_2026/**
+
+      - name: 🚀 Deploy Production
+        if: github.ref == 'refs/heads/main'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: public_html/
+          state-name: .ftp-deploy-sync-live.json
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.agents/**
+            **/knowledge-vault/**
+            **/workstreams/**
+            **/logs/**
+            **/scripts/**
+            **/curated_landscapes_2021_2026/**
