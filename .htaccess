@@ -1,0 +1,9 @@
+# Shashikant Prasad Platform — Apache / LiteSpeed Directives
+RewriteEngine On
+RewriteBase /
+
+# Ensure /photography cleanly routes to index.html if accessed directly
+RewriteRule ^photography/?$ index.html [L]
+
+# Prevent directory browsing and enable symlink following
+Options -Indexes +FollowSymLinks
