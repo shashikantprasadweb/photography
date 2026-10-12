@@ -1,0 +1,281 @@
+/**
+ * Fine-Art Photography Showcase — Bespoke Editorial Styling & Interaction System
+ * Shashikant Prasad Platform (shashikantprasad.com)
+ */
+
+/* 1. Global Baseline & Typography Tokens */
+:root {
+  --bg-onyx: #07090e;
+  --bg-deep: #04060a;
+  --bg-elevated: rgba(15, 23, 42, 0.55);
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(245, 158, 11, 0.4);
+  --accent-amber: #f59e0b;
+  --accent-amber-glow: rgba(245, 158, 11, 0.25);
+  --font-cinzel: 'Cinzel', serif;
+  --font-inter: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+
+/* Ambient Canvas Glow Layer */
+#ambient-glow-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.35;
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  filter: blur(80px);
+  will-change: opacity, transform;
+}
+
+/* Magnetic Custom Cursor (Desktop) */
+@media (hover: hover) and (pointer: fine) {
+  body.has-custom-cursor {
+    cursor: none;
+  }
+  body.has-custom-cursor a,
+  body.has-custom-cursor button,
+  body.has-custom-cursor .gallery-card,
+  body.has-custom-cursor .filmstrip-item {
+    cursor: none;
+  }
+}
+
+#custom-cursor-dot {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background-color: var(--accent-amber);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: transform 0.08s ease-out, opacity 0.2s ease, width 0.25s ease, height 0.25s ease, background-color 0.25s ease;
+  mix-blend-mode: difference;
+}
+
+#custom-cursor-ring {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(245, 158, 11, 0.6);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+              height 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.3s ease, 
+              background-color 0.3s ease,
+              transform 0.15s ease-out;
+}
+
+#custom-cursor-ring.cursor-hover-image {
+  width: 72px;
+  height: 72px;
+  background-color: rgba(245, 158, 11, 0.12);
+  border-color: rgba(245, 158, 11, 0.9);
+}
+
+#custom-cursor-ring.cursor-hover-image::after {
+  content: 'INSPECT';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-inter);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #fff;
+}
+
+/* 2. Mode Switcher (Grid Exhibition vs Cinema Light-Table) */
+.view-mode-toggle {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+  padding: 3px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.view-mode-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #94a3b8;
+  transition: all 0.25s ease;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.view-mode-btn.active {
+  background: #f59e0b;
+  color: #07090e;
+  box-shadow: 0 2px 10px rgba(245, 158, 11, 0.4);
+}
+
+/* 3. Curator's Exhibition Wall (Asymmetric Editorial Rhythm) */
+.exhibition-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 2rem;
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .exhibition-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .exhibition-grid {
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 3rem 2.5rem;
+  }
+  
+  /* Asymmetric Rhythmic Spans */
+  .grid-card-hero {
+    grid-column: span 8;
+  }
+  .grid-card-tall {
+    grid-column: span 4;
+  }
+  .grid-card-standard {
+    grid-column: span 4;
+  }
+  .grid-card-wide {
+    grid-column: span 6;
+  }
+  .grid-card-quote {
+    grid-column: span 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2.5rem;
+    background: rgba(15, 23, 42, 0.35);
+    border: 1px dashed rgba(245, 158, 11, 0.3);
+    border-radius: 1.25rem;
+    backdrop-filter: blur(10px);
+  }
+}
+
+/* 4. Cinema Filmstrip Light-Table Mode */
+.filmstrip-viewport {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  margin-right: calc(-50vw + 50%);
+  padding: 2.5rem 0 4rem 0;
+  overflow: hidden;
+  background: radial-gradient(circle at center, rgba(15, 23, 42, 0.8) 0%, rgba(4, 6, 10, 0.98) 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.filmstrip-track {
+  display: flex;
+  gap: 2.5rem;
+  padding: 0 5vw;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(245, 158, 11, 0.4) transparent;
+  cursor: grab;
+  user-select: none;
+}
+
+.filmstrip-track:active {
+  cursor: grabbing;
+}
+
+.filmstrip-track::-webkit-scrollbar {
+  height: 6px;
+}
+.filmstrip-track::-webkit-scrollbar-thumb {
+  background: rgba(245, 158, 11, 0.4);
+  border-radius: 9999px;
+}
+
+.filmstrip-item {
+  flex: 0 0 auto;
+  width: 320px;
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(15, 23, 42, 0.5);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+@media (min-width: 768px) {
+  .filmstrip-item {
+    width: 440px;
+  }
+}
+
+.filmstrip-item:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(245, 158, 11, 0.6);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6), 0 0 24px rgba(245, 158, 11, 0.2);
+}
+
+/* 5. Lightbox Darkroom Inspection & Zoom */
+.lightbox-zoomable {
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: center center;
+  cursor: zoom-in;
+}
+
+.lightbox-zoomable.is-zoomed {
+  cursor: grab;
+}
+.lightbox-zoomable.is-zoomed:active {
+  cursor: grabbing;
+}
+
+.lightbox-filmstrip-strip {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding: 0.5rem 0.25rem;
+  scrollbar-width: none;
+}
+.lightbox-filmstrip-strip::-webkit-scrollbar {
+  display: none;
+}
+
+.lightbox-thumb-btn {
+  flex: 0 0 auto;
+  width: 56px;
+  height: 56px;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  border: 2px solid transparent;
+  opacity: 0.4;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  background: #000;
+}
+
+.lightbox-thumb-btn.active {
+  border-color: #f59e0b;
+  opacity: 1;
+  transform: scale(1.08);
+}
