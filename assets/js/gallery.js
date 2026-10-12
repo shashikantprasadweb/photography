@@ -1,5 +1,5 @@
 /**
- * Gallery, Exhibition Wall, Cinema Filmstrip & Lightbox Controller
+ * Gallery, Exhibition Wall, Cinema Filmstrip & Fullscreen Museum Lightbox Controller
  * Shashikant Prasad Platform (shashikantprasad.com)
  */
 
@@ -10,7 +10,8 @@
   let activeIndex = 0;
   let filteredItems = [];
   let currentMode = 'exhibition'; // 'exhibition' | 'filmstrip'
-  let isZoomed = false;
+  let hudTimer = null;
+  let isHudVisible = true;
 
   const gridContainer = document.getElementById('gallery-grid');
   const filmstripContainer = document.getElementById('filmstrip-container');
@@ -19,16 +20,13 @@
   const modeExhibitionBtn = document.getElementById('mode-exhibition-btn');
   const modeFilmstripBtn = document.getElementById('mode-filmstrip-btn');
 
-  // Ambient Canvas & Cursor
-  const ambientCanvas = document.getElementById('ambient-glow-canvas');
-  const cursorDot = document.getElementById('custom-cursor-dot');
-  const cursorRing = document.getElementById('custom-cursor-ring');
-
-  // Lightbox DOM Elements
+  // Fullscreen Museum Lightbox DOM Elements
   const lightbox = document.getElementById('lightbox-modal');
+  const lightboxBackdrop = document.getElementById('lightbox-ambient-backdrop');
   const lightboxImg = document.getElementById('lightbox-image');
+  const lightboxHudTop = document.getElementById('lightbox-hud-top');
+  const lightboxHudBottom = document.getElementById('lightbox-hud-bottom');
   const lightboxTitle = document.getElementById('lightbox-title');
-  const lightboxCategory = document.getElementById('lightbox-category');
   const lightboxLocation = document.getElementById('lightbox-location');
   const lightboxExif = document.getElementById('lightbox-exif');
   const lightboxStory = document.getElementById('lightbox-story');
@@ -36,8 +34,8 @@
   const lightboxClose = document.getElementById('lightbox-close');
   const lightboxPrev = document.getElementById('lightbox-prev');
   const lightboxNext = document.getElementById('lightbox-next');
-  const lightboxZoomToggle = document.getElementById('lightbox-zoom-toggle');
-  const zoomBtnLabel = document.getElementById('zoom-btn-label');
+  const edgeZoneLeft = document.getElementById('edge-zone-left');
+  const edgeZoneRight = document.getElementById('edge-zone-right');
   const lightboxFilmstrip = document.getElementById('lightbox-filmstrip');
 
   let initAttempts = 0;
@@ -60,10 +58,8 @@
     renderFilmstrip(filteredItems);
     bindFilters();
     bindModeToggle();
-    bindLightbox();
+    bindFullscreenLightbox();
     bindFeaturedCards(data);
-    initAmbientSampling();
-    initMagneticCursor();
     initFilmstripDrag();
   }
 
@@ -158,19 +154,19 @@
 
       card.addEventListener('click', () => {
         filteredItems = [...data];
-        openLightbox(idx);
+        openFullscreenLightbox(idx);
       });
       card.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
           filteredItems = [...data];
-          openLightbox(idx);
+          openFullscreenLightbox(idx);
         }
       });
     });
   }
 
-  // 1. Curator's Exhibition Wall Rendering (Asymmetric Editorial Rhythm)
+  // 1. Curator's Exhibition Wall Rendering
   function renderExhibitionWall(items) {
     if (!gridContainer) return;
     gridContainer.innerHTML = '';
@@ -190,7 +186,6 @@
       card.setAttribute('tabindex', '0');
       card.setAttribute('aria-label', `View ${item.title}`);
       
-      // Assign rhythmic editorial spans (Hero 8-col, Tall 4-col, Wide 6-col, Standard 4-col)
       let spanClass = 'grid-card-standard';
       let aspectClass = 'aspect-[4/5]';
 
@@ -237,16 +232,13 @@
         </div>
       `;
 
-      card.addEventListener('click', () => openLightbox(index));
+      card.addEventListener('click', () => openFullscreenLightbox(index));
       card.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' || e.key === ' ') {
           e.preventDefault();
-          openLightbox(index);
+          openFullscreenLightbox(index);
         }
       });
-
-      // Hover triggers subtle chromatic background bloom
-      card.addEventListener('mouseenter', () => triggerAmbientBloom(item));
 
       gridContainer.appendChild(card);
     });
@@ -286,8 +278,7 @@
         </div>
       `;
 
-      itemEl.addEventListener('click', () => openLightbox(index));
-      itemEl.addEventListener('mouseenter', () => triggerAmbientBloom(item));
+      itemEl.addEventListener('click', () => openFullscreenLightbox(index));
       filmstripTrack.appendChild(itemEl);
     });
   }
@@ -362,139 +353,73 @@
     });
   }
 
-  // 6. Ambient Chromatic Canvas Sampling
-  function initAmbientSampling() {
-    if (!ambientCanvas) return;
-    const ctx = ambientCanvas.getContext('2d');
-    function resize() {
-      ambientCanvas.width = window.innerWidth / 4;
-      ambientCanvas.height = window.innerHeight / 4;
-    }
-    resize();
-    window.addEventListener('resize', resize);
-  }
+  // ==========================================================================
+  // Cinema Museum Fullscreen Lightbox Controller
+  // ==========================================================================
 
-  function triggerAmbientBloom(item) {
-    if (!ambientCanvas || !item) return;
-    const ctx = ambientCanvas.getContext('2d');
-    if (!ctx) return;
-
-    let r = 245, g = 158, b = 11; // default warm amber
-    if (item.category === 'coastal') { r = 14; g = 165; b = 233; } // cyan horizon
-    else if (item.category === 'alps') { r = 99; g = 102; b = 241; } // indigo peaks
-    else if (item.category === 'wild') { r = 16; g = 185; b = 129; } // emerald moss
-    else if (item.category === 'night') { r = 168; g = 85; b = 247; } // violet nocturne
-
-    const w = ambientCanvas.width;
-    const h = ambientCanvas.height;
-    ctx.clearRect(0, 0, w, h);
-
-    const grad = ctx.createRadialGradient(w / 2, h / 2, 10, w / 2, h / 2, w / 2);
-    grad.addColorStop(0, `rgba(${r}, ${g}, ${b}, 0.55)`);
-    grad.addColorStop(1, 'rgba(7, 9, 14, 0)');
-
-    ctx.fillStyle = grad;
-    ctx.fillRect(0, 0, w, h);
-  }
-
-  // 7. Magnetic Custom Cursor Controller
-  function initMagneticCursor() {
-    if (!cursorDot || !cursorRing) return;
-    if (window.matchMedia('(pointer: coarse)').matches) {
-      cursorDot.style.display = 'none';
-      cursorRing.style.display = 'none';
-      return;
-    }
-
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-    let ringX = mouseX;
-    let ringY = mouseY;
-
-    window.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      cursorDot.style.left = `${mouseX}px`;
-      cursorDot.style.top = `${mouseY}px`;
-    });
-
-    function renderCursor() {
-      ringX += (mouseX - ringX) * 0.18;
-      ringY += (mouseY - ringY) * 0.18;
-      cursorRing.style.left = `${ringX}px`;
-      cursorRing.style.top = `${ringY}px`;
-      requestAnimationFrame(renderCursor);
-    }
-    requestAnimationFrame(renderCursor);
-
-    // Image inspect hover effect
-    document.addEventListener('mouseover', (e) => {
-      const card = e.target.closest('.gallery-card, .filmstrip-item');
-      if (card) {
-        cursorRing.classList.add('cursor-hover-image');
-      } else {
-        cursorRing.classList.remove('cursor-hover-image');
-      }
-    });
-  }
-
-  // 8. Archival Darkroom Lightbox with Zoom & Thumbnail Scrubber
-  function renderLightboxScrubber() {
+  function renderFullscreenScrubber() {
     if (!lightboxFilmstrip) return;
     lightboxFilmstrip.innerHTML = '';
 
     filteredItems.forEach((item, idx) => {
       const btn = document.createElement('button');
-      btn.className = `lightbox-thumb-btn ${idx === activeIndex ? 'active' : ''}`;
+      btn.className = `hud-thumb-btn ${idx === activeIndex ? 'active' : ''}`;
       btn.setAttribute('aria-label', `Jump to ${item.title}`);
       btn.innerHTML = `<img src="${resolveAssetPath(item.thumbnail, true)}" alt="" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='${resolveAssetPath(item.thumbnail, false)}';" />`;
-      btn.addEventListener('click', () => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
         activeIndex = idx;
-        updateLightboxContent();
+        updateFullscreenContent();
       });
       lightboxFilmstrip.appendChild(btn);
     });
 
-    // Center active thumbnail in scrubber
     const activeBtn = lightboxFilmstrip.children[activeIndex];
     if (activeBtn) {
       activeBtn.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
     }
   }
 
-  function resetZoom() {
-    isZoomed = false;
-    if (lightboxImg) {
-      lightboxImg.style.transform = 'scale(1)';
-      lightboxImg.classList.remove('is-zoomed');
-    }
-    if (zoomBtnLabel) zoomBtnLabel.textContent = '100% Zoom';
+  function showHud() {
+    isHudVisible = true;
+    if (lightboxHudTop) lightboxHudTop.classList.remove('is-hidden');
+    if (lightboxHudBottom) lightboxHudBottom.classList.remove('is-hidden');
+
+    if (hudTimer) clearTimeout(hudTimer);
+    hudTimer = setTimeout(() => {
+      hideHud();
+    }, 2800);
   }
 
-  function toggleZoom() {
-    if (!lightboxImg) return;
-    isZoomed = !isZoomed;
-    if (isZoomed) {
-      lightboxImg.style.transform = 'scale(2.2)';
-      lightboxImg.classList.add('is-zoomed');
-      if (zoomBtnLabel) zoomBtnLabel.textContent = 'Reset (1:1)';
-    } else {
-      resetZoom();
-    }
+  function hideHud() {
+    isHudVisible = false;
+    if (lightboxHudTop) lightboxHudTop.classList.add('is-hidden');
+    if (lightboxHudBottom) lightboxHudBottom.classList.add('is-hidden');
   }
 
-  function updateLightboxContent() {
+  function updateFullscreenContent() {
     const item = filteredItems[activeIndex];
     if (!item) return;
 
-    resetZoom();
+    const fullImageSrc = resolveAssetPath(item.image);
 
-    if (lightboxImg) {
-      lightboxImg.src = resolveAssetPath(item.image);
-      lightboxImg.alt = item.title;
+    // 1. Dynamic ambient blurred backdrop clone
+    if (lightboxBackdrop) {
+      lightboxBackdrop.style.backgroundImage = `url('${fullImageSrc}')`;
     }
+
+    // 2. High-res optical stage image
+    if (lightboxImg) {
+      lightboxImg.style.opacity = '0';
+      lightboxImg.src = fullImageSrc;
+      lightboxImg.alt = item.title;
+      lightboxImg.onload = () => {
+        lightboxImg.style.opacity = '1';
+      };
+    }
+
+    // 3. Telemetry and Labels
     if (lightboxTitle) lightboxTitle.textContent = item.title;
-    if (lightboxCategory) lightboxCategory.textContent = item.categoryLabel;
     if (lightboxLocation) lightboxLocation.textContent = item.location;
     if (lightboxExif) lightboxExif.textContent = `${item.camera} • ${item.exif}`;
     if (lightboxStory) lightboxStory.textContent = item.story;
@@ -502,14 +427,14 @@
       lightboxCounter.textContent = `${String(activeIndex + 1).padStart(2, '0')} / ${String(filteredItems.length).padStart(2, '0')}`;
     }
 
-    renderLightboxScrubber();
-    triggerAmbientBloom(item);
+    renderFullscreenScrubber();
+    showHud();
   }
 
-  function openLightbox(index) {
+  function openFullscreenLightbox(index) {
     if (!lightbox || !filteredItems[index]) return;
     activeIndex = index;
-    updateLightboxContent();
+    updateFullscreenContent();
 
     lightbox.classList.remove('hidden');
     requestAnimationFrame(() => {
@@ -518,16 +443,18 @@
     });
     document.body.classList.add('overflow-hidden');
 
-    if (lightboxClose) lightboxClose.focus();
+    showHud();
   }
 
-  function closeLightbox() {
+  function closeFullscreenLightbox() {
     if (!lightbox) return;
-    resetZoom();
+    if (hudTimer) clearTimeout(hudTimer);
     lightbox.classList.remove('opacity-100');
     lightbox.classList.add('opacity-0');
     setTimeout(() => {
       lightbox.classList.add('hidden');
+      if (lightboxImg) lightboxImg.src = '';
+      if (lightboxBackdrop) lightboxBackdrop.style.backgroundImage = 'none';
     }, 300);
     document.body.classList.remove('overflow-hidden');
   }
@@ -535,30 +462,56 @@
   function nextPhoto() {
     if (filteredItems.length === 0) return;
     activeIndex = (activeIndex + 1) % filteredItems.length;
-    updateLightboxContent();
+    updateFullscreenContent();
   }
 
   function prevPhoto() {
     if (filteredItems.length === 0) return;
     activeIndex = (activeIndex - 1 + filteredItems.length) % filteredItems.length;
-    updateLightboxContent();
+    updateFullscreenContent();
   }
 
-  function bindLightbox() {
+  function bindFullscreenLightbox() {
     if (!lightbox) return;
 
-    if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
-    if (lightboxNext) lightboxNext.addEventListener('click', nextPhoto);
-    if (lightboxPrev) lightboxPrev.addEventListener('click', prevPhoto);
-    if (lightboxZoomToggle) lightboxZoomToggle.addEventListener('click', toggleZoom);
+    if (lightboxClose) lightboxClose.addEventListener('click', closeFullscreenLightbox);
+    if (lightboxNext) lightboxNext.addEventListener('click', (e) => { e.stopPropagation(); nextPhoto(); });
+    if (lightboxPrev) lightboxPrev.addEventListener('click', (e) => { e.stopPropagation(); prevPhoto(); });
 
-    if (lightboxImg) {
-      lightboxImg.addEventListener('dblclick', toggleZoom);
+    if (edgeZoneLeft) {
+      edgeZoneLeft.addEventListener('click', (e) => { e.stopPropagation(); prevPhoto(); });
+    }
+    if (edgeZoneRight) {
+      edgeZoneRight.addEventListener('click', (e) => { e.stopPropagation(); nextPhoto(); });
     }
 
+    // Auto-Hide HUD on mouse movement / idle
+    lightbox.addEventListener('mousemove', (e) => {
+      showHud();
+
+      // Proximity Edge Detection: reveal arrows when cursor approaches borders
+      const w = window.innerWidth;
+      const x = e.clientX;
+      if (lightboxPrev) {
+        if (x < w * 0.18) {
+          lightboxPrev.classList.add('force-visible');
+        } else {
+          lightboxPrev.classList.remove('force-visible');
+        }
+      }
+      if (lightboxNext) {
+        if (x > w * 0.82) {
+          lightboxNext.classList.add('force-visible');
+        } else {
+          lightboxNext.classList.remove('force-visible');
+        }
+      }
+    });
+
+    // Close on backdrop / stage click outside controls
     lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox || e.target.id === 'lightbox-backdrop') {
-        closeLightbox();
+      if (e.target.id === 'lightbox-stage' || e.target.id === 'lightbox-ambient-backdrop' || e.target.id === 'lightbox-vignette') {
+        closeFullscreenLightbox();
       }
     });
 
@@ -566,13 +519,11 @@
       if (lightbox.classList.contains('hidden')) return;
 
       if (e.key === 'Escape') {
-        closeLightbox();
+        closeFullscreenLightbox();
       } else if (e.key === 'ArrowRight') {
         nextPhoto();
       } else if (e.key === 'ArrowLeft') {
         prevPhoto();
-      } else if (e.key === 'z' || e.key === 'Z') {
-        toggleZoom();
       }
     });
   }

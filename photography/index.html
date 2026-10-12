@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/photography-bundle.min.css?v=20261012_11">
+  <link rel="stylesheet" href="assets/css/photography-master.css?v=20261012_12">
   <link rel="preload" as="image" href="assets/images/photography/havelock_island/2026_havelock_island_01_thumb.webp">
   <style>
     body { font-family: 'Inter', sans-serif; }
@@ -35,17 +35,10 @@
     }
   </style>
 </head>
-<body class="bg-[#07090e] text-slate-200 antialiased min-h-screen flex flex-col selection:bg-amber-500/20 selection:text-amber-300 has-custom-cursor">
-
-  <!-- Ambient Chromatic Canvas Glow -->
-  <canvas id="ambient-glow-canvas"></canvas>
-
-  <!-- Magnetic Custom Cursor -->
-  <div id="custom-cursor-dot" aria-hidden="true"></div>
-  <div id="custom-cursor-ring" aria-hidden="true"></div>
+<body class="bg-[#07090e] text-slate-200 antialiased min-h-screen flex flex-col selection:bg-amber-500/20 selection:text-amber-300">
 
   <!-- Navigation -->
-  <header class="fixed top-0 inset-x-0 z-50 glass-nav">
+  <header class="fixed top-0 inset-x-0 z-40 glass-nav">
     <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
       <a href="/" class="flex items-center gap-3 group">
         <img src="favicon.svg" alt="SP Camera" class="w-9 h-9 rounded-lg shadow-sm border border-amber-500/40 group-hover:scale-105 transition-transform">
@@ -156,76 +149,69 @@
     </div>
   </footer>
 
-  <!-- Lightbox Modal (Archival Darkroom Edition) -->
-  <div id="lightbox-modal" class="fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-3 sm:p-6" role="dialog" aria-modal="true" aria-label="Archival Photo Lightbox">
-    <!-- Backdrop -->
-    <div id="lightbox-backdrop" class="absolute inset-0 bg-[#04060a]/95 backdrop-blur-2xl"></div>
+  <!-- ======================================================================
+       Cinema Museum Fullscreen Lightbox
+       ====================================================================== -->
+  <div id="lightbox-modal" class="hidden opacity-0 transition-opacity duration-300" role="dialog" aria-modal="true" aria-label="Fullscreen Museum Showcase">
+    
+    <!-- Ambient Blurred Mirror Backdrop Layer -->
+    <div id="lightbox-ambient-backdrop"></div>
+    <div id="lightbox-vignette"></div>
 
-    <!-- Content Container -->
-    <div class="relative z-10 max-w-7xl w-full max-h-[96vh] flex flex-col items-center justify-between">
-      
-      <!-- Top Action Bar -->
-      <div class="w-full flex items-center justify-between pb-3 border-b border-slate-800/80 mb-2">
-        <div class="flex items-center gap-3">
-          <div id="lightbox-counter" class="text-xs font-mono text-amber-400 font-semibold tracking-widest uppercase"></div>
-          <span class="text-slate-600">&bull;</span>
-          <span id="lightbox-zoom-hint" class="hidden sm:inline-block text-[11px] font-mono text-slate-400">Click photo or double-click to 100% zoom</span>
-        </div>
-        <div class="flex items-center gap-2">
-          <button id="lightbox-zoom-toggle" class="px-3 py-1.5 rounded-full bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300 hover:text-white hover:border-amber-500/50 transition-all flex items-center gap-1.5" title="Toggle 1:1 Pixel Zoom">
-            <svg class="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"/></svg>
-            <span id="zoom-btn-label">100% Zoom</span>
-          </button>
-          <button id="lightbox-close" class="p-2 rounded-full bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-amber-500/50 transition-all" aria-label="Close modal">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-          </button>
+    <!-- Top HUD: Counter, Title, Close -->
+    <div id="lightbox-hud-top" class="lightbox-hud">
+      <div class="flex items-center gap-4">
+        <span id="lightbox-counter" class="text-xs font-mono font-bold text-amber-400 tracking-widest uppercase px-3 py-1 rounded bg-black/60 border border-amber-500/30 backdrop-blur-md"></span>
+        <div class="flex flex-col">
+          <h2 id="lightbox-title" class="font-cinzel text-lg sm:text-xl font-bold text-white leading-tight drop-shadow-md">Andaman Horizon</h2>
+          <span id="lightbox-location" class="text-xs text-slate-300 font-mono drop-shadow">Havelock Island, Andaman</span>
         </div>
       </div>
-
-      <!-- Navigation Arrows -->
-      <button id="lightbox-prev" class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 p-3.5 rounded-full bg-slate-950/80 border border-slate-800 text-slate-300 hover:text-white hover:border-amber-500/50 hover:bg-slate-900 transition-all z-20 shadow-2xl backdrop-blur-md" aria-label="Previous photo">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+      <button id="lightbox-close" class="p-3 rounded-full bg-black/60 border border-white/20 text-slate-200 hover:text-white hover:border-amber-400 transition-all backdrop-blur-md" aria-label="Close Fullscreen (Esc)">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
       </button>
-      <button id="lightbox-next" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 p-3.5 rounded-full bg-slate-950/80 border border-slate-800 text-slate-300 hover:text-white hover:border-amber-500/50 hover:bg-slate-900 transition-all z-20 shadow-2xl backdrop-blur-md" aria-label="Next photo">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+    </div>
+
+    <!-- Center Stage Image -->
+    <div id="lightbox-stage">
+      <img id="lightbox-image" src="" alt="" class="select-none" />
+    </div>
+
+    <!-- Proximity Left Navigation Edge Zone -->
+    <div id="edge-zone-left" class="edge-nav-zone zone-left" title="Previous Photo (Left Arrow)">
+      <button id="lightbox-prev" class="edge-nav-btn" aria-label="Previous Photo">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
       </button>
+    </div>
 
-      <!-- Central Image Viewport -->
-      <div id="lightbox-viewport" class="relative flex-1 w-full flex items-center justify-center overflow-hidden my-auto py-2 min-h-[50vh]">
-        <img id="lightbox-image" src="" alt="" class="lightbox-zoomable max-h-[58vh] max-w-full object-contain rounded-xl shadow-2xl transition-all duration-300 select-none" />
-      </div>
+    <!-- Proximity Right Navigation Edge Zone -->
+    <div id="edge-zone-right" class="edge-nav-zone zone-right" title="Next Photo (Right Arrow)">
+      <button id="lightbox-next" class="edge-nav-btn" aria-label="Next Photo">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </div>
 
-      <!-- Bottom Filmstrip Scrubber Strip -->
-      <div class="w-full px-2 py-1 overflow-hidden border-t border-slate-900/80">
-        <div id="lightbox-filmstrip" class="lightbox-filmstrip-strip">
-          <!-- Thumbnail buttons dynamically injected -->
+    <!-- Bottom HUD: EXIF Telemetry, Story & Docked Filmstrip -->
+    <div id="lightbox-hud-bottom" class="lightbox-hud">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 max-w-6xl mx-auto w-full">
+        <p id="lightbox-story" class="text-xs text-slate-300 font-light max-w-2xl leading-relaxed drop-shadow truncate sm:whitespace-normal">
+          Untouched horizons and ancient coastal driftwood.
+        </p>
+        <div id="lightbox-exif" class="px-3.5 py-1.5 rounded-lg bg-black/70 border border-slate-700/80 text-[11px] font-mono text-amber-300 tracking-wider shadow-lg backdrop-blur-md self-start sm:self-auto">
+          SONY ILCE-7M3 &bull; 17mm &bull; f/11 &bull; 1/50s &bull; ISO 100
         </div>
       </div>
 
-      <!-- Bottom Metadata Panel -->
-      <div class="w-full mt-2 p-4 sm:p-5 rounded-2xl bg-slate-950/90 border border-slate-800/80 backdrop-blur-md flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div class="flex-1">
-          <div class="flex items-center gap-3 mb-1">
-            <span id="lightbox-category" class="text-[10px] font-semibold tracking-widest uppercase text-amber-400">Coastal &amp; Islands</span>
-            <span class="text-slate-600">&bull;</span>
-            <span id="lightbox-location" class="text-xs text-slate-400">Havelock Island, Andaman</span>
-          </div>
-          <h2 id="lightbox-title" class="font-cinzel text-lg sm:text-xl text-white font-bold mb-1">Andaman Horizon #01</h2>
-          <p id="lightbox-story" class="text-xs text-slate-400 font-light max-w-3xl leading-relaxed">Untouched turquoise horizons, tropical sunset gradients, and ancient coastal driftwood.</p>
-        </div>
-        
-        <div class="flex items-center">
-          <div id="lightbox-exif" class="px-4 py-2.5 rounded-xl bg-slate-900 border border-slate-800 text-xs font-mono text-amber-300/90 tracking-wider shadow-inner">
-            Sony ILCE-7M3 &bull; 17mm &bull; f/11 &bull; 1/50s &bull; ISO 100
-          </div>
-        </div>
+      <!-- Docked Filmstrip Scrubber -->
+      <div id="lightbox-filmstrip" class="hud-filmstrip-strip max-w-5xl mx-auto w-full">
+        <!-- Thumbnail buttons injected dynamically -->
       </div>
     </div>
   </div>
 
   <!-- Scripts -->
-  <script src="assets/js/featured-config.js?v=20261012_11"></script>
-  <script src="assets/js/gallery-data.js?v=20261012_11"></script>
-  <script src="assets/js/gallery.js?v=20261012_11"></script>
+  <script src="assets/js/featured-config.js?v=20261012_12"></script>
+  <script src="assets/js/gallery-data.js?v=20261012_12"></script>
+  <script src="assets/js/gallery.js?v=20261012_12"></script>
 </body>
 </html>
