@@ -43,6 +43,44 @@
     renderGrid(filteredItems);
     bindFilters();
     bindLightbox();
+    bindFeaturedCards(data);
+  }
+
+  function bindFeaturedCards(data) {
+    const featuredCards = document.querySelectorAll('[data-gallery-id], .gallery-card, .featured-photo-card');
+    featuredCards.forEach((card) => {
+      if (gridContainer && gridContainer.contains(card)) return;
+
+      const photoId = card.getAttribute('data-gallery-id');
+      const clickHandler = (e) => {
+        if (e.target.closest('a')) return;
+        filteredItems = [...data];
+        let idx = -1;
+        if (photoId) {
+          idx = data.findIndex((item) => item.id === photoId);
+        }
+        if (idx === -1) {
+          const img = card.querySelector('img');
+          if (img && img.src) {
+            idx = data.findIndex((item) => img.src.includes(item.thumbnail) || (item.image && img.src.includes(item.image)));
+          }
+        }
+        if (idx !== -1) {
+          openLightbox(idx);
+        } else {
+          openLightbox(0);
+        }
+      };
+
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', clickHandler);
+      card.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          clickHandler(e);
+        }
+      });
+    });
   }
 
 
