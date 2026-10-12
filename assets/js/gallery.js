@@ -67,10 +67,14 @@
     initFilmstripDrag();
   }
 
-  function resolveAssetPath(p) {
+  function resolveAssetPath(p, preferWebp = false) {
     if (!p) return '';
-    if (p.startsWith('/') || p.startsWith('http')) return p;
-    return '/' + p;
+    let target = p;
+    if (preferWebp && target.endsWith('.jpg') && target.includes('_thumb')) {
+      target = target.replace(/\.jpg$/, '.webp');
+    }
+    if (target.startsWith('/') || target.startsWith('http')) return target;
+    return '/' + target;
   }
 
   function renderCounts(data) {
@@ -119,10 +123,11 @@
       card.innerHTML = `
         <div class="aspect-[4/5] relative overflow-hidden bg-slate-950">
           <img 
-            src="${resolveAssetPath(item.thumbnail)}" 
+            src="${resolveAssetPath(item.thumbnail, true)}" 
             alt="${item.title}" 
             loading="lazy" 
             class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            onerror="this.onerror=null; this.src='${resolveAssetPath(item.thumbnail, false)}';"
           />
           <div class="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
           <div class="absolute top-4 left-4 flex items-center gap-2">
@@ -205,10 +210,11 @@
       card.innerHTML = `
         <div class="${aspectClass} relative overflow-hidden bg-slate-950">
           <img 
-            src="${resolveAssetPath(item.thumbnail)}" 
+            src="${resolveAssetPath(item.thumbnail, true)}" 
             alt="${item.title}" 
             loading="${index < 4 ? 'eager' : 'lazy'}"
             class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            onerror="this.onerror=null; this.src='${resolveAssetPath(item.thumbnail, false)}';"
           />
           <div class="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/25 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
           
@@ -260,10 +266,11 @@
       itemEl.innerHTML = `
         <div class="aspect-[16/10] relative overflow-hidden bg-slate-950">
           <img 
-            src="${resolveAssetPath(item.thumbnail)}" 
+            src="${resolveAssetPath(item.thumbnail, true)}" 
             alt="${item.title}" 
             loading="lazy" 
             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            onerror="this.onerror=null; this.src='${resolveAssetPath(item.thumbnail, false)}';"
           />
           <div class="absolute inset-0 bg-gradient-to-t from-[#04060a] via-transparent to-transparent opacity-85"></div>
           <div class="absolute top-3 left-3">
@@ -440,7 +447,7 @@
       const btn = document.createElement('button');
       btn.className = `lightbox-thumb-btn ${idx === activeIndex ? 'active' : ''}`;
       btn.setAttribute('aria-label', `Jump to ${item.title}`);
-      btn.innerHTML = `<img src="${resolveAssetPath(item.thumbnail)}" alt="" class="w-full h-full object-cover" />`;
+      btn.innerHTML = `<img src="${resolveAssetPath(item.thumbnail, true)}" alt="" class="w-full h-full object-cover" onerror="this.onerror=null; this.src='${resolveAssetPath(item.thumbnail, false)}';" />`;
       btn.addEventListener('click', () => {
         activeIndex = idx;
         updateLightboxContent();
