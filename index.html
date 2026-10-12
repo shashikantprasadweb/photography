@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/cinema-lightbox.css?v=20261012_13">
   <style>
     body { font-family: 'Inter', sans-serif; }
     .font-cinzel { font-family: 'Cinzel', serif; }
@@ -105,12 +106,12 @@
 
     <!-- 6 Curated Showcase Preview Cards (rendered dynamically from GALLERY_DATA) -->
     <div id="featured-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
-      <div class="aspect-[4/5] rounded-2xl border border-slate-800/80 bg-slate-900/40 animate-pulse" aria-hidden="true"></div>
-      <div class="aspect-[4/5] rounded-2xl border border-slate-800/80 bg-slate-900/40 animate-pulse" aria-hidden="true"></div>
-      <div class="aspect-[4/5] rounded-2xl border border-slate-800/80 bg-slate-900/40 animate-pulse" aria-hidden="true"></div>
-      <div class="aspect-[4/5] rounded-2xl border border-slate-800/80 bg-slate-900/40 animate-pulse" aria-hidden="true"></div>
-      <div class="aspect-[4/5] rounded-2xl border border-slate-800/80 bg-slate-900/40 animate-pulse" aria-hidden="true"></div>
-      <div class="aspect-[4/5] rounded-2xl border border-slate-800/80 bg-slate-900/40 animate-pulse" aria-hidden="true"></div>
+      <div class="aspect-[3/2] rounded-2xl border border-slate-800/80 bg-slate-900/40 animate-pulse" aria-hidden="true"></div>
+      <div class="aspect-[3/2] rounded-2xl border border-slate-800/80 bg-slate-900/40 animate-pulse" aria-hidden="true"></div>
+      <div class="aspect-[3/2] rounded-2xl border border-slate-800/80 bg-slate-900/40 animate-pulse" aria-hidden="true"></div>
+      <div class="aspect-[3/2] rounded-2xl border border-slate-800/80 bg-slate-900/40 animate-pulse" aria-hidden="true"></div>
+      <div class="aspect-[3/2] rounded-2xl border border-slate-800/80 bg-slate-900/40 animate-pulse" aria-hidden="true"></div>
+      <div class="aspect-[3/2] rounded-2xl border border-slate-800/80 bg-slate-900/40 animate-pulse" aria-hidden="true"></div>
       <noscript>
         <div class="col-span-full py-12 text-center text-slate-400">
           <p>JavaScript is required to view interactive featured cards. Visit the full <a href="photography/" class="text-amber-400 underline">Photography Gallery</a>.</p>
@@ -303,61 +304,69 @@
     </div>
   </footer>
 
-  <!-- Lightbox Modal -->
-  <div id="lightbox-modal" class="fixed inset-0 z-50 hidden opacity-0 transition-opacity duration-300 flex items-center justify-center p-4 sm:p-8" role="dialog" aria-modal="true" aria-label="Photo Lightbox">
-    <!-- Backdrop -->
-    <div id="lightbox-backdrop" class="absolute inset-0 bg-[#04060a]/95 backdrop-blur-xl"></div>
+  <!-- ======================================================================
+       Cinema Museum Fullscreen Lightbox
+       ====================================================================== -->
+  <div id="lightbox-modal" class="hidden opacity-0 transition-opacity duration-300" role="dialog" aria-modal="true" aria-label="Fullscreen Museum Showcase">
+    
+    <!-- Ambient Blurred Mirror Backdrop Layer -->
+    <div id="lightbox-ambient-backdrop"></div>
+    <div id="lightbox-vignette"></div>
 
-    <!-- Content Container -->
-    <div class="relative z-10 max-w-6xl w-full max-h-[92vh] flex flex-col items-center justify-between">
-      
-      <!-- Top Action Bar -->
-      <div class="w-full flex items-center justify-between pb-4 border-b border-slate-800/60 mb-2">
-        <div id="lightbox-counter" class="text-xs font-mono text-amber-400/90 tracking-widest uppercase"></div>
-        <div class="flex items-center gap-3">
-          <button id="lightbox-close" class="p-2 rounded-full bg-slate-900 border border-slate-800 text-slate-300 hover:text-white hover:border-amber-500/50 transition-all" aria-label="Close modal">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-          </button>
+    <!-- Top HUD: Counter, Title, Close -->
+    <div id="lightbox-hud-top" class="lightbox-hud">
+      <div class="flex items-center gap-4">
+        <span id="lightbox-counter" class="text-xs font-mono font-bold text-amber-400 tracking-widest uppercase px-3 py-1 rounded bg-black/60 border border-amber-500/30 backdrop-blur-md"></span>
+        <div class="flex flex-col">
+          <h2 id="lightbox-title" class="font-cinzel text-lg sm:text-xl font-bold text-white leading-tight drop-shadow-md">Andaman Horizon</h2>
+          <span id="lightbox-location" class="text-xs text-slate-300 font-mono drop-shadow">Havelock Island, Andaman</span>
+        </div>
+      </div>
+      <button id="lightbox-close" class="p-3 rounded-full bg-black/60 border border-white/20 text-slate-200 hover:text-white hover:border-amber-400 transition-all backdrop-blur-md" aria-label="Close Fullscreen (Esc)">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <!-- Center Stage Image -->
+    <div id="lightbox-stage">
+      <img id="lightbox-image" src="" alt="" class="select-none" />
+    </div>
+
+    <!-- Proximity Left Navigation Edge Zone -->
+    <div id="edge-zone-left" class="edge-nav-zone zone-left" title="Previous Photo (Left Arrow)">
+      <button id="lightbox-prev" class="edge-nav-btn" aria-label="Previous Photo">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+      </button>
+    </div>
+
+    <!-- Proximity Right Navigation Edge Zone -->
+    <div id="edge-zone-right" class="edge-nav-zone zone-right" title="Next Photo (Right Arrow)">
+      <button id="lightbox-next" class="edge-nav-btn" aria-label="Next Photo">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+      </button>
+    </div>
+
+    <!-- Bottom HUD: EXIF Telemetry, Story & Docked Filmstrip -->
+    <div id="lightbox-hud-bottom" class="lightbox-hud">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 max-w-6xl mx-auto w-full">
+        <p id="lightbox-story" class="text-xs text-slate-300 font-light max-w-2xl leading-relaxed drop-shadow truncate sm:whitespace-normal">
+          Untouched horizons and ancient coastal driftwood.
+        </p>
+        <div id="lightbox-exif" class="px-3.5 py-1.5 rounded-lg bg-black/70 border border-slate-700/80 text-[11px] font-mono text-amber-300 tracking-wider shadow-lg backdrop-blur-md self-start sm:self-auto">
+          SONY ILCE-7M3 &bull; 17mm &bull; f/11 &bull; 1/50s &bull; ISO 100
         </div>
       </div>
 
-      <!-- Navigation Arrows -->
-      <button id="lightbox-prev" class="absolute left-2 top-1/2 -translate-y-1/2 p-3 rounded-full bg-slate-950/80 border border-slate-800 text-slate-300 hover:text-white hover:border-amber-500/50 hover:bg-slate-900 transition-all z-20" aria-label="Previous photo">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-      </button>
-      <button id="lightbox-next" class="absolute right-2 top-1/2 -translate-y-1/2 p-3 rounded-full bg-slate-950/80 border border-slate-800 text-slate-300 hover:text-white hover:border-amber-500/50 hover:bg-slate-900 transition-all z-20" aria-label="Next photo">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-      </button>
-
-      <!-- Central Image Viewport -->
-      <div class="relative flex-1 w-full flex items-center justify-center overflow-hidden my-auto py-2">
-        <img id="lightbox-image" src="" alt="" class="max-h-[64vh] max-w-full object-contain rounded-xl shadow-2xl transition-all duration-300" />
-      </div>
-
-      <!-- Bottom Metadata Panel -->
-      <div class="w-full mt-3 p-5 rounded-2xl bg-slate-950/90 border border-slate-800/80 backdrop-blur-md flex flex-col md:flex-row md:items-center justify-between gap-4">
-        <div class="flex-1">
-          <div class="flex items-center gap-3 mb-1">
-            <span id="lightbox-category" class="text-[10px] font-semibold tracking-widest uppercase text-amber-400">Coastal &amp; Islands</span>
-            <span class="text-slate-600">&bull;</span>
-            <span id="lightbox-location" class="text-xs text-slate-400">Havelock Island, Andaman</span>
-          </div>
-          <h2 id="lightbox-title" class="font-cinzel text-xl text-white font-bold mb-1">Andaman Horizon #01</h2>
-          <p id="lightbox-story" class="text-xs text-slate-400 font-light max-w-2xl leading-relaxed">Untouched turquoise horizons, tropical sunset gradients, and ancient coastal driftwood.</p>
-        </div>
-        
-        <div class="flex items-center">
-          <div id="lightbox-exif" class="px-4 py-2 rounded-lg bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300 tracking-wider">
-            Sony ILCE-7M3 &bull; 17mm &bull; f/11 &bull; 1/50s &bull; ISO 100
-          </div>
-        </div>
+      <!-- Docked Filmstrip Scrubber -->
+      <div id="lightbox-filmstrip" class="hud-filmstrip-strip max-w-5xl mx-auto w-full">
+        <!-- Thumbnail buttons injected dynamically -->
       </div>
     </div>
   </div>
 
   <!-- Scripts -->
-  <script src="assets/js/featured-config.js?v=20261012_12"></script>
-  <script src="assets/js/gallery-data.js?v=20261012_12"></script>
-  <script src="assets/js/gallery.js?v=20261012_12"></script>
+  <script src="assets/js/featured-config.js?v=20261012_13"></script>
+  <script src="assets/js/gallery-data.js?v=20261012_13"></script>
+  <script src="assets/js/gallery.js?v=20261012_13"></script>
 </body>
 </html>

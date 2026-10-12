@@ -6,13 +6,31 @@
 #lightbox-modal {
   position: fixed;
   inset: 0;
-  z-index: 100;
+  z-index: 1000;
   background-color: #000;
   overflow: hidden;
-  display: flex;
+  display: none;
+  opacity: 0;
   align-items: center;
   justify-content: center;
   user-select: none;
+  transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+#lightbox-modal.is-active {
+  display: flex !important;
+  opacity: 1 !important;
+}
+
+/* Aspect ratio utility overrides for photographic perfection */
+.aspect-\[3\/2\] {
+  aspect-ratio: 3 / 2;
+}
+.aspect-\[16\/9\] {
+  aspect-ratio: 16 / 9;
+}
+.aspect-\[16\/10\] {
+  aspect-ratio: 16 / 10;
 }
 
 /* Ambient Blurred Backdrop Layer */

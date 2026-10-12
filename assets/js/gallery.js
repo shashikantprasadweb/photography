@@ -117,12 +117,12 @@
       card.className = 'gallery-card group relative rounded-2xl overflow-hidden border border-slate-800/80 bg-slate-900/40 shadow-lg cursor-pointer hover:border-amber-500/50 transition-all duration-300';
 
       card.innerHTML = `
-        <div class="aspect-[4/5] relative overflow-hidden bg-slate-950">
+        <div class="aspect-[3/2] relative overflow-hidden bg-slate-950">
           <img 
             src="${resolveAssetPath(item.thumbnail, true)}" 
             alt="${item.title}" 
             loading="lazy" 
-            class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            class="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
             onerror="this.onerror=null; this.src='${resolveAssetPath(item.thumbnail, false)}';"
           />
           <div class="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
@@ -187,14 +187,11 @@
       card.setAttribute('aria-label', `View ${item.title}`);
       
       let spanClass = 'grid-card-standard';
-      let aspectClass = 'aspect-[4/5]';
+      let aspectClass = 'aspect-[3/2]';
 
       if (index === 0) {
         spanClass = 'grid-card-hero';
-        aspectClass = 'aspect-[16/10] sm:aspect-[16/9]';
-      } else if (index % 7 === 1) {
-        spanClass = 'grid-card-tall';
-        aspectClass = 'aspect-[3/4] sm:aspect-[2/3]';
+        aspectClass = 'aspect-[16/9] sm:aspect-[16/9]';
       } else if (index % 7 === 3 || index % 7 === 4) {
         spanClass = 'grid-card-wide';
         aspectClass = 'aspect-[16/10]';
@@ -208,7 +205,7 @@
             src="${resolveAssetPath(item.thumbnail, true)}" 
             alt="${item.title}" 
             loading="${index < 4 ? 'eager' : 'lazy'}"
-            class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+            class="w-full h-full object-cover object-center transition-transform duration-700 ease-out group-hover:scale-105"
             onerror="this.onerror=null; this.src='${resolveAssetPath(item.thumbnail, false)}';"
           />
           <div class="absolute inset-0 bg-gradient-to-t from-[#07090e] via-[#07090e]/25 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
@@ -437,6 +434,7 @@
     updateFullscreenContent();
 
     lightbox.classList.remove('hidden');
+    lightbox.classList.add('is-active');
     requestAnimationFrame(() => {
       lightbox.classList.remove('opacity-0');
       lightbox.classList.add('opacity-100');
@@ -452,6 +450,7 @@
     lightbox.classList.remove('opacity-100');
     lightbox.classList.add('opacity-0');
     setTimeout(() => {
+      lightbox.classList.remove('is-active');
       lightbox.classList.add('hidden');
       if (lightboxImg) lightboxImg.src = '';
       if (lightboxBackdrop) lightboxBackdrop.style.backgroundImage = 'none';
@@ -516,7 +515,7 @@
     });
 
     document.addEventListener('keydown', (e) => {
-      if (lightbox.classList.contains('hidden')) return;
+      if (!lightbox.classList.contains('is-active')) return;
 
       if (e.key === 'Escape') {
         closeFullscreenLightbox();
